@@ -1,7 +1,7 @@
-import React, { useRef } from "react";
-import styles from "./serach_header.module.css";
+import React, { useRef, memo } from "react";
+import styles from "./search_header.module.css";
 
-const SearchHeader = ({ onSearch }) => {
+const SearchHeader = memo(({ onSearch }) => {
   const inputRef = useRef();
   const handelSearch = () => {
     const value = inputRef.current.value;
@@ -16,10 +16,18 @@ const SearchHeader = ({ onSearch }) => {
       handelSearch();
     }
   };
+  // const onclick = () => {
+  //   window.location.reload();
+  // };
 
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
+      <div
+        className={styles.logo}
+        onClick={() => {
+          window.location.reload();
+        }}
+      >
         <img className={styles.img} src="/img/logo.png" alt="logo" />
         <h1 className={styles.title}>Yentube</h1>
       </div>
@@ -35,6 +43,5 @@ const SearchHeader = ({ onSearch }) => {
       </button>
     </header>
   );
-};
-
+});
 export default SearchHeader;
