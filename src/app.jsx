@@ -5,6 +5,7 @@ import VideoList from "./components/video_list/video_list";
 import SearchHeader from "./components/search_header/search_header";
 import VideoDetail from "./components/video_detail/video_detail";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { YoutubeApiProvider } from "./context/YoutubeApiContext";
 
 function App(youtube) {
   const queryClient = new QueryClient();
@@ -27,9 +28,11 @@ function App(youtube) {
         </div>
       </section> */}
       <SearchHeader />
-      <QueryClientProvider client={queryClient}>
-        <Outlet />
-      </QueryClientProvider>
+      <YoutubeApiProvider>
+        <QueryClientProvider client={queryClient}>
+          <Outlet />
+        </QueryClientProvider>
+      </YoutubeApiProvider>
     </div>
   );
 }
