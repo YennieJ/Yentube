@@ -1,46 +1,39 @@
-import React, { useRef, memo } from "react";
+import React, { memo, useState } from "react";
+import { useEffect } from "react";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import styles from "./search_header.module.css";
+import { BsSearch } from "react-icons/bs";
 
-const SearchHeader = memo(( onSearch ) => {
-  const inputRef = useRef();
-  const handelSearch = () => {
-    const value = inputRef.current.value;
-    onSearch(value);
-  };
-  const onClick = () => {
-    handelSearch();
+const SearchHeader = memo((onSearch) => {
+  const navigate = useNavigate();
+  const { keyword } = useParams();
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    searchValue && navigate(`videos/${searchValue}`);
   };
 
-  const onKeyPress = (event) => {
-    if (event.key === "Enter") {
-      handelSearch();
-    }
-  };
-  // const onclick = () => {
-  //   window.location.reload();
-  // };
+  useEffect(() => setSearchValue(keyword || ""), [keyword]);
 
   return (
     <header className={styles.header}>
-      <div
-        className={styles.logo}
-        onClick={() => {
-          window.location.reload();
-        }}
-      >
-        <img className={styles.img} src="/img/logo.png" alt="logo" />
+      <Link to="/" className={styles.logo}>
+        <img src="/img/logo.png" alt="logo" />
         <h1 className={styles.title}>Yentube</h1>
-      </div>
-      <input
-        ref={inputRef}
-        onKeyPress={onKeyPress}
-        className={styles.input}
-        type="serach"
-        placeholder="Search..."
-      />
-      <button className={styles.button} type="submit" onClick={onClick}>
-        <img className={styles.buttonimg} src="/img/search.png" alt="search" />
-      </button>
+      </Link>
+      <form className={styles.form} onSubmit={handleSubmit}>
+        <input
+          className={styles.input}
+          type="serach"
+          placeholder="Search..."
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
+        <button className={styles.button} type="submit">
+          <BsSearch />
+        </button>
+      </form>
     </header>
   );
 });

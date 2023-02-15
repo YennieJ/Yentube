@@ -49,6 +49,7 @@ function App(youtube) {
           />
         </div>
       </section> */}
+      <SearchHeader />
       <Outlet />
     </div>
   );
