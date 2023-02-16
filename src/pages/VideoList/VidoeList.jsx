@@ -1,9 +1,12 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useYoutubeApi } from "../context/YoutubeApiContext";
+import VideoCard from "../../components/VideoItem/VideoItem";
+import { useYoutubeApi } from "../../context/YoutubeApiContext";
 
-const Videos = () => {
+import styles from "./VidoeList.module.css";
+
+const VideoList = () => {
   const { keyword } = useParams();
   const { youtube } = useYoutubeApi();
   const {
@@ -18,11 +21,9 @@ const Videos = () => {
       {isLoding && <p>Loding...</p>}
       {error && <p>ERROR</p>}
       {videos && (
-        <ul>
-          {videos.map((videos) => (
-            <div key={videos.id}>
-              <div>{videos.snippet.title}</div>
-            </div>
+        <ul className={styles.videos}>
+          {videos.map((video) => (
+            <VideoCard key={video.id} video={video} />
           ))}
         </ul>
       )}
@@ -30,4 +31,4 @@ const Videos = () => {
   );
 };
 
-export default Videos;
+export default VideoList;

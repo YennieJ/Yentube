@@ -1,0 +1,8 @@
+.videos {
+  place-items: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  row-gap: 10px;
+  column-gap: 30px;
+}

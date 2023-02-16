@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./app";
 import NotFound from "./pages/NotFound";
-import Videos from "./pages/Videos";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VideoDetail from "./components/video_detail/video_detail";
+import VideoList from "./pages/VideoList/VidoeList";
 
 const router = createBrowserRouter([
   {
@@ -14,9 +14,9 @@ const router = createBrowserRouter([
     element: <App />,
     errorElement: <NotFound />,
     children: [
-      { index: true, element: <Videos /> },
-      { path: "videos", element: <Videos /> },
-      { path: "videos/:keyword", element: <Videos /> },
+      { index: true, element: <VideoList /> },
+      { path: "videos", element: <VideoList /> },
+      { path: "videos/:keyword", element: <VideoList /> },
       { path: "videos/watch/:videoId", element: <VideoDetail /> },
     ],
   },
