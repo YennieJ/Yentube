@@ -12,10 +12,10 @@ const ChannelInfo = ({ id, name }) => {
     error,
   } = useQuery(["channel", id], () => youtube.channelImageURL(id));
   return (
-    <div>
+    <div className={styles.info}>
       {error && <div>error</div>}
-      {url && <img src={url} alt={name} />}
-      <p>{name}</p>
+      {url && <img className={styles.channelImg} src={url} alt="" />}
+      <p className={styles.channelName}>{name}</p>
     </div>
   );
 };

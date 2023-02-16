@@ -22,7 +22,7 @@ const VideoList = () => {
       {videos && (
         <ul className={styles.videos}>
           {videos.map((video) => (
-            <VideoItem key={video.id} video={video} />
+            <VideoItem key={video.id} video={video} type="list" />
           ))}
         </ul>
       )}

@@ -1,14 +1,34 @@
-/* .detail {
-  padding: 0.2em;
-}
-.description {
-  white-space: pre-wrap;
-} */
-
 .detail {
-  padding: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 1000px) {
+  .detail {
+    display: flex;
+    flex-direction: row;
+  }
 }
 
 .playvideo {
   padding: 0 20px;
+}
+
+.info {
+  padding: 12px 10px 24px 10px;
+}
+
+.title {
+  font-size: 1.8rem;
+  line-height: 2rem;
+  font-weight: 600;
+  word-break: break-all;
+}
+.pre {
+  white-space: pre-wrap;
+  width: 100%;
+}
+
+.article {
 }

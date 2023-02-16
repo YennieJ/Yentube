@@ -3,24 +3,26 @@ import { useNavigate } from "react-router-dom";
 import { formatAgo } from "../../util/date";
 import styles from "./VideoItem.module.css";
 
-const VideoItem = ({ video }) => {
+const VideoItem = ({ video, type }) => {
   const { title, thumbnails, channelTitle, publishedAt } = video.snippet;
   const navigate = useNavigate();
-
+  const isList = type === "list";
   return (
     <li
-      className={styles.video}
+      className={`${isList ? styles.listVideo : styles.relatedVideo}`}
       onClick={() =>
         navigate(`/videos/watch/${video.id}`, { state: { video } })
       }
     >
       <img
-        className={styles.thumbnail}
+        className={`${isList ? styles.listthumbnail : styles.relatedthumbnail}`}
         src={thumbnails.medium.url}
         alt={title}
       />
-      <div className={styles.info}>
-        <p className={styles.title}>{title}</p>
+      <div>
+        <p className={`${isList ? styles.listtitle : styles.relatedtitle}`}>
+          {title}
+        </p>
         <p className={styles.channel}>{channelTitle}</p>
         <p className={styles.date}>{formatAgo(publishedAt, "ko")}</p>
       </div>
