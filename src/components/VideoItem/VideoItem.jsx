@@ -3,14 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { formatAgo } from "../../util/date";
 import styles from "./VideoItem.module.css";
 
-const VideoCard = ({ video }) => {
+const VideoItem = ({ video }) => {
   const { title, thumbnails, channelTitle, publishedAt } = video.snippet;
   const navigate = useNavigate();
 
   return (
     <li
       className={styles.video}
-      onClick={() => navigate(`videos/watch/${video.id}`, { state: { video } })}
+      onClick={() =>
+        navigate(`/videos/watch/${video.id}`, { state: { video } })
+      }
     >
       <img
         className={styles.thumbnail}
@@ -26,4 +28,4 @@ const VideoCard = ({ video }) => {
   );
 };
 
-export default VideoCard;
+export default VideoItem;

@@ -1,26 +1,25 @@
 import React from "react";
-import styles from "./VideoDetail.module.css";
-
+import { useLocation } from "react-router-dom";
 import ChannelInfo from "../ChannelInfo/ChannelInfo";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
-import { useLocation } from "react-router-dom";
-const VideoDetail = () => {
+
+import styles from "./VideoDetail.module.css";
+
+export default function VideoDetail() {
   const {
     state: { video },
   } = useLocation();
-
   const { title, channelId, channelTitle, description } = video.snippet;
-
-  console.log(video);
   return (
-    <section>
+    <section className={styles.detail}>
       <article>
         <iframe
+          className={styles.playvideo}
           title={title}
-          id={video.id}
+          id="player"
           type="text/html"
           width="100%"
-          height="640"
+          height="360"
           src={`http://www.youtube.com/embed/${video.id}`}
           frameBorder="0"
         />
@@ -35,6 +34,4 @@ const VideoDetail = () => {
       </section>
     </section>
   );
-};
-
-export default VideoDetail;
+}

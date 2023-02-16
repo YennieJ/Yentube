@@ -1,6 +1,14 @@
-.detail {
+/* .detail {
   padding: 0.2em;
 }
 .description {
   white-space: pre-wrap;
+} */
+
+.detail {
+  padding: 20px;
+}
+
+.playvideo {
+  padding: 0 20px;
 }
