@@ -4,6 +4,7 @@
   list-style-type: none;
   cursor: pointer;
 }
+
 .listVideo:hover {
   transform: scale(1.1);
   transition-duration: 0.5s;
@@ -27,17 +28,6 @@
   line-height: 2rem;
 }
 
-.relatedtitle {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  word-wrap: break-word;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 1.5rem;
-}
 .relatedVideo {
   display: flex;
   padding-bottom: 10px;
@@ -50,7 +40,17 @@
   border-radius: 5px;
   margin-right: 8px;
 }
-
+.relatedtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
 .channel,
 .date {
   line-height: 1.2em;

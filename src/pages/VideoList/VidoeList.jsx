@@ -19,7 +19,6 @@ const VideoList = () => {
 
   return (
     <>
-      {isLoading && <p>Loding...</p>}
       {error && <p>ERROR</p>}
       {videos && (
         <ul className={styles.videos}>

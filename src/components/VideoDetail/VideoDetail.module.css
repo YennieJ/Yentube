@@ -1,14 +1,10 @@
 .detail {
+  width: 100%;
+  border: 5px solid blue;
+
   padding: 30px;
   display: flex;
   flex-direction: column;
-}
-
-@media screen and (min-width: 1000px) {
-  .detail {
-    display: flex;
-    flex-direction: row;
-  }
 }
 
 .playvideo {
@@ -31,4 +27,19 @@
 }
 
 .article {
+  border: 5px solid red;
+}
+
+@media screen and (min-width: 1000px) {
+  .detail {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  .related {
+    width: 400px;
+  }
+  .article {
+    width: 100%;
+  }
 }
