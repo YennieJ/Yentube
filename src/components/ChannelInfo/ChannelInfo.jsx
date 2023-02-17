@@ -6,14 +6,13 @@ import { useQuery } from "@tanstack/react-query";
 
 const ChannelInfo = ({ id, name }) => {
   const { youtube } = useYoutubeApi();
-  const {
-    data: url,
-    isLoading,
-    error,
-  } = useQuery(["channel", id], () => youtube.channelImageURL(id));
+  const { data: url } = useQuery(
+    ["channel", id],
+    () => youtube.channelImageURL(id),
+    { staleTime: 1000 * 60 * 5 }
+  );
   return (
     <div className={styles.info}>
-      {error && <div>error</div>}
       {url && <img className={styles.channelImg} src={url} alt="" />}
       <p className={styles.channelName}>{name}</p>
     </div>
