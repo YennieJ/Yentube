@@ -1,7 +1,4 @@
 .detail {
-  width: 100%;
-  border: 5px solid blue;
-
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -24,10 +21,8 @@
 .pre {
   white-space: pre-wrap;
   width: 100%;
-}
 
-.article {
-  border: 5px solid red;
+  padding-bottom: 50px;
 }
 
 @media screen and (min-width: 1000px) {

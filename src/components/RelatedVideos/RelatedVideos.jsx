@@ -18,11 +18,14 @@ const RelatedVideos = ({ id }) => {
       {isLoading && <p>Loding...</p>}
       {error && <p>ERROR</p>}
       {videos && (
-        <ul className={styles.videos}>
-          {videos.map((video) => (
-            <VideoItem key={video.id} video={video} />
-          ))}
-        </ul>
+        <div className={styles.related}>
+          <h3 className={styles.title}>추천 영상</h3>
+          <ul className={styles.videos}>
+            {videos.map((video) => (
+              <VideoItem key={video.id} video={video} />
+            ))}
+          </ul>
+        </div>
       )}
     </>
   );

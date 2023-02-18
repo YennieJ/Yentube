@@ -5,6 +5,7 @@ import VideoItem from "../../components/VideoItem/VideoItem";
 import { useYoutubeApi } from "../../context/YoutubeApiContext";
 
 import styles from "./VidoeList.module.css";
+import ListLoading from "../../components/ListLoading/ListLoading";
 
 const VideoList = () => {
   const { keyword } = useParams();
@@ -19,6 +20,7 @@ const VideoList = () => {
 
   return (
     <>
+      {isLoading && <ListLoading />}
       {error && <p>ERROR</p>}
       {videos && (
         <ul className={styles.videos}>
