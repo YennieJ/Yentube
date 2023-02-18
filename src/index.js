@@ -7,7 +7,6 @@ import NotFound from "./pages/NotFound";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VideoList from "./pages/VideoList/VidoeList";
 import VideoDetail from "./components/VideoDetail/VideoDetail";
-import ListLoading from "./components/ListLoading/ListLoading";
 
 const router = createBrowserRouter([
   {

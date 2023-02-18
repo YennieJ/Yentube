@@ -1,4 +1,6 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import ChannelInfo from "../ChannelInfo/ChannelInfo";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
@@ -10,28 +12,60 @@ export default function VideoDetail() {
     state: { video },
   } = useLocation();
   const { title, channelId, channelTitle, description } = video.snippet;
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    if (isOpen) {
+      return;
+    } else {
+      return setIsOpen(true);
+    }
+  };
+
   return (
-    <section className={styles.detail}>
-      <article className={styles.article}>
-        <iframe
-          className={styles.playvideo}
-          title={title}
-          id="player"
-          type="text/html"
-          width="100%"
-          height="630"
-          src={`http://www.youtube.com/embed/${video.id}`}
-          frameBorder="0"
-        />
-        <div className={styles.info}>
-          <h2 className={styles.title}>{title}</h2>
-          <ChannelInfo id={channelId} name={channelTitle} />
-          <pre className={styles.pre}>{description}</pre>
-        </div>
-      </article>
-      <section className={styles.related}>
-        <RelatedVideos id={video.id} />
+    <div className={styles.container}>
+      <section className={styles.content}>
+        <article className={styles.article}>
+          <div className={styles.videoContainer}>
+            <iframe
+              className={styles.video}
+              title={title}
+              id="player"
+              type="text/html"
+              width="100%"
+              height="100%"
+              src={`http://www.youtube.com/embed/${video.id}`}
+              frameBorder="0"
+            />
+          </div>
+          <div className={styles.info}>
+            <h2 className={styles.title}>{title}</h2>
+            <ChannelInfo id={channelId} name={channelTitle} />
+            <div
+              className={`${
+                isOpen
+                  ? styles.OepndescriptionContainer
+                  : styles.descriptionContainer
+              }`}
+              onClick={handleOpen}
+            >
+              <pre className={`${isOpen ? styles.OpenPre : styles.pre}`}>
+                {description}
+              </pre>
+              <button
+                className={styles.button}
+                onClick={() => setIsOpen(false)}
+              >
+                {isOpen ? "간략히" : "더보기"}
+              </button>
+            </div>
+          </div>
+        </article>
+        <section className={styles.relatedVidoes}>
+          <RelatedVideos id={video.id} />
+        </section>
       </section>
-    </section>
+    </div>
   );
 }
