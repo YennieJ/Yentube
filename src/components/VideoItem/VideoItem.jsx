@@ -7,6 +7,8 @@ const VideoItem = ({ video, type }) => {
   const { title, thumbnails, channelTitle, publishedAt } = video.snippet;
   const navigate = useNavigate();
   const isList = type === "list";
+
+  console.log(video);
   return (
     <li
       className={`${isList ? styles.listVideo : styles.relatedVideo}`}
