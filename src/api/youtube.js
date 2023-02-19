@@ -6,9 +6,9 @@ export default class Youtube {
   }
 
   // #은 프라이빗 함수로 이 class 내부에선 호출이 가능하나 외부에선 불가능
-  async search(keyword) {
-    return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular();
-  }
+  // async search(token, keyword) {
+  //   return keyword ? this.#searchByKeyword(keyword) : this.#mostPopular(token);
+  // }
 
   async channelImageURL(id) {
     return this.apiClient
@@ -31,31 +31,48 @@ export default class Youtube {
       );
   }
 
-  async #searchByKeyword(keyword) {
-    return this.apiClient
-      .search({
-        params: {
-          part: "snippet",
-          maxResults: 25,
-          type: "video",
-          q: keyword,
-        },
-      })
+  // async #searchByKeyword(keyword) {
+  //   return this.apiClient
+  //     .search({
+  //       params: {
+  //         part: "snippet",
+  //         maxResults: 25,
+  //         type: "video",
+  //         q: keyword,
+  //       },
+  //     })
 
-      .then((res) =>
-        res.data.items.map((item) => ({ ...item, id: item.id.videoId }))
-      );
-  }
+  //     .then((res) =>
+  //       res.data.items.map((item) => ({ ...item, id: item.id.videoId }))
+  //     );
+  // }
 
-  async #mostPopular() {
+  // async #mostPopular(pageToken) {
+  //   console.log(pageToken);
+  //   return this.apiClient
+  //     .videos({
+  //       params: {
+  //         part: "snippet",
+  //         maxResults: 5,
+  //         chart: "mostPopular",
+  //         regionCode: "KR",
+  //         pageToken: pageToken && pageToken,
+  //       },
+  //     })
+  //     .then((res) => res.data.items);
+  // }
+
+  async search(pageToken) {
     return this.apiClient
       .videos({
         params: {
           part: "snippet",
-          maxResults: 25,
+          maxResults: 5,
           chart: "mostPopular",
+          regionCode: "KR",
+          pageToken: pageToken && pageToken,
         },
       })
-      .then((res) => res.data.items);
+      .then((res) => res.data);
   }
 }
