@@ -4,7 +4,7 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import styles from "./search_header.module.css";
 import { BsSearch } from "react-icons/bs";
 
-const SearchHeader = memo((onSearch) => {
+const SearchHeader = memo(() => {
   const navigate = useNavigate();
   const { keyword } = useParams();
   const [searchValue, setSearchValue] = useState("");

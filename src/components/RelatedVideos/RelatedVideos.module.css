@@ -1,7 +1,5 @@
-.videos {
-  display: flex;
-  flex-direction: column;
-  padding-left: 10;
+.related {
+  padding-left: 5px;
 }
 
 .title {
@@ -15,6 +13,8 @@
   margin-bottom: 5px;
 }
 
-.related {
-  padding-left: 5px;
+.videos {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10;
 }

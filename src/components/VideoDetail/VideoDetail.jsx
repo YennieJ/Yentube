@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import ChannelInfo from "../ChannelInfo/ChannelInfo";
@@ -11,7 +10,8 @@ export default function VideoDetail() {
   const {
     state: { video },
   } = useLocation();
-  const { title, channelId, channelTitle, description } = video.snippet;
+  const { title, channelId, channelTitle, description, publishedAt } =
+    video.snippet;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -39,9 +39,15 @@ export default function VideoDetail() {
               frameBorder="0"
             />
           </div>
-          <div className={styles.info}>
-            <h2 className={styles.title}>{title}</h2>
-            <ChannelInfo id={channelId} name={channelTitle} />
+          <div className={styles.infoWrapper}>
+            <ChannelInfo
+              id={channelId}
+              title={title}
+              name={channelTitle}
+              time={publishedAt}
+              type="detail"
+            />
+
             <div
               className={`${
                 isOpen

@@ -1,14 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { formatAgo } from "../../util/date";
 import styles from "./VideoItem.module.css";
+import Channelinfo from "../ChannelInfo/ChannelInfo";
 
 const VideoItem = ({ video, type }) => {
-  const { title, thumbnails, channelTitle, publishedAt } = video.snippet;
+  const { title, thumbnails, channelTitle, publishedAt, channelId } =
+    video.snippet;
   const navigate = useNavigate();
+
+  //VideoList에서 가져옴.
   const isList = type === "list";
 
-  console.log(video);
+  //Related에서 가져옴 ChannelInfo에 전달해야하는
+  const isRelated = type === "related";
+
   return (
     <li
       className={`${isList ? styles.listVideo : styles.relatedVideo}`}
@@ -17,17 +22,18 @@ const VideoItem = ({ video, type }) => {
       }
     >
       <img
-        className={`${isList ? styles.listthumbnail : styles.relatedthumbnail}`}
+        className={`${isList ? styles.listThumbnail : styles.relatedThumbnail}`}
         src={thumbnails.medium.url}
         alt={title}
       />
-      <div>
-        <p className={`${isList ? styles.listtitle : styles.relatedtitle}`}>
-          {title}
-        </p>
-        <p className={styles.channel}>{channelTitle}</p>
-        <p className={styles.date}>{formatAgo(publishedAt, "ko")}</p>
-      </div>
+
+      <Channelinfo
+        id={channelId}
+        title={title}
+        name={channelTitle}
+        time={publishedAt}
+        isRelated={isRelated}
+      />
     </li>
   );
 };

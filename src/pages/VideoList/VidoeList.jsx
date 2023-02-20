@@ -58,22 +58,21 @@ const VideoList = () => {
     <>
       {isLoading && <ListLoading />}
       {error && <p>ERROR</p>}
-      <button onClick={() => hasNextPage && fetchNextPage()}>!!!!!!!</button>
+
       {videos && (
-        <ul>
-          {videos.pages.map((page, i) => (
-            <div className={styles.videos} key={i}>
-              {page.map((video) => (
-                <VideoItem
-                  key={keyword ? video.id.videoId : video.id}
-                  video={video}
-                  type="list"
-                />
-              ))}
-            </div>
-          ))}
+        <ul className={styles.videos}>
+          {videos.pages.map((page) =>
+            page.map((video) => (
+              <VideoItem
+                key={keyword ? video.id.videoId : video.id}
+                video={video}
+                type="list"
+              />
+            ))
+          )}
         </ul>
       )}
+
       <div ref={loadMoreRef} />
     </>
   );

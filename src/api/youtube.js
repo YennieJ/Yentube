@@ -23,7 +23,7 @@ export default class Youtube {
       .search({
         params: {
           part: "snippet",
-          maxResults: 25,
+          maxResults: 24,
           type: "video",
           relatedToVideoId: id,
         },
@@ -39,7 +39,7 @@ export default class Youtube {
       .search({
         params: {
           part: "snippet",
-          maxResults: 25,
+          maxResults: 24,
           type: "video",
           q: keyword,
           pageToken: pageToken && pageToken,

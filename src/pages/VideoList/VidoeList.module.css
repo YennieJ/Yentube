@@ -1,9 +1,9 @@
 .videos {
   place-items: center;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 
   row-gap: 10px;
   column-gap: 30px;
-  padding: 0 40px;
+  padding: 0 80px;
 }
