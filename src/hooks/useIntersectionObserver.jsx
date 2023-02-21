@@ -1,5 +1,6 @@
 import React from "react";
 
+// 무한 스크롤
 export default function useIntersectionObserver({
   root,
   target,

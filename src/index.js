@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./app";
 import NotFound from "./pages/NotFound";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VideoList from "./pages/VideoList/VidoeList";
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <GoogleOAuthProvider
+      clientId={`${process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}`}
+    >
+      <RouterProvider router={router} />
+    </GoogleOAuthProvider>
   </React.StrictMode>
 );

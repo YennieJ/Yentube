@@ -4,6 +4,8 @@ import { useNavigate, Link, useParams } from "react-router-dom";
 import styles from "./search_header.module.css";
 import { BsSearch } from "react-icons/bs";
 
+import Login from "../Login/Login";
+
 const SearchHeader = memo(() => {
   const navigate = useNavigate();
   const { keyword } = useParams();
@@ -34,6 +36,8 @@ const SearchHeader = memo(() => {
           <BsSearch />
         </button>
       </form>
+
+      <Login />
     </header>
   );
 });

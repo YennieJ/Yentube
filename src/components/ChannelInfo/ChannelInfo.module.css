@@ -13,6 +13,7 @@
 
 .relatedCotainer {
   display: flex;
+  /* width: 200px; */
 }
 
 .imgContainer {
@@ -67,7 +68,7 @@
   word-wrap: break-word;
   font-size: 18px;
   color: white;
-  padding-bottom: 7px;
+  margin-bottom: 7px;
   font-weight: 500;
   line-height: 1.5rem;
 }

@@ -25,6 +25,8 @@ export default class Youtube {
           part: "snippet",
           maxResults: 24,
           type: "video",
+          regionCode: "KR",
+
           relatedToVideoId: id,
         },
       })
@@ -42,6 +44,8 @@ export default class Youtube {
           maxResults: 24,
           type: "video",
           q: keyword,
+          regionCode: "KR",
+
           pageToken: pageToken && pageToken,
         },
       })
@@ -54,7 +58,7 @@ export default class Youtube {
       .videos({
         params: {
           part: "snippet",
-          maxResults: 5,
+          maxResults: 24,
           chart: "mostPopular",
           regionCode: "KR",
           pageToken: pageToken && pageToken,

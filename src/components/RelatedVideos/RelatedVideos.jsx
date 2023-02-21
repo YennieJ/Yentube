@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import styles from "./RelatedVideos.module.css";
 import VideoItem from "../VideoItem/VideoItem";
-const RelatedVideos = ({ id }) => {
+const RelatedVideos = ({ id, type }) => {
   const { youtube } = useYoutubeApi();
   const {
     data: videos,
