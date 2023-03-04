@@ -1,10 +1,10 @@
 import React from "react";
-import { formatAgo } from "../../util/date";
+import { useQuery } from "@tanstack/react-query";
+import { useYoutubeApi } from "../../../../context/YoutubeApiContext";
+
+import { formatAgo } from "../../../../util/date";
 
 import styles from "./ChannelInfo.module.css";
-
-import { useYoutubeApi } from "../../context/YoutubeApiContext";
-import { useQuery } from "@tanstack/react-query";
 
 const ChannelInfo = ({ id, title, name, time, type, isRelated }) => {
   const { youtube } = useYoutubeApi();
@@ -12,6 +12,7 @@ const ChannelInfo = ({ id, title, name, time, type, isRelated }) => {
     youtube.channelImageURL(id)
   );
 
+  //for css
   const isDetail = type === "detail";
 
   return (

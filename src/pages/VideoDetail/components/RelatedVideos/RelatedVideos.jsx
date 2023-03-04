@@ -1,10 +1,11 @@
 import React from "react";
-import { useYoutubeApi } from "../../context/YoutubeApiContext";
+import { useYoutubeApi } from "../../../../context/YoutubeApiContext";
 import { useQuery } from "@tanstack/react-query";
 
+import VideoItem from "../../../../components/VideoItem/VideoItem";
+
 import styles from "./RelatedVideos.module.css";
-import VideoItem from "../VideoItem/VideoItem";
-const RelatedVideos = ({ id, type }) => {
+const RelatedVideos = ({ id }) => {
   const { youtube } = useYoutubeApi();
   const {
     data: videos,

@@ -8,7 +8,7 @@ export default class Youtube {
   // #은 프라이빗 함수로 이 class 내부에선 호출이 가능하나 외부에선 불가능
   async search(pageToken, keyword) {
     return keyword
-      ? this.#searchByKeyword(keyword)
+      ? this.#searchByKeyword(pageToken, keyword)
       : this.#mostPopular(pageToken);
   }
 

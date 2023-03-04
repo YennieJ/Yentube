@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
-import ChannelInfo from "../ChannelInfo/ChannelInfo";
-import RelatedVideos from "../RelatedVideos/RelatedVideos";
+
+import ChannelInfo from "../../components/VideoItem/components/ChannelInfo/ChannelInfo";
+import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
 
 import styles from "./VideoDetail.module.css";
 
@@ -13,13 +14,13 @@ export default function VideoDetail() {
   const { title, channelId, channelTitle, description, publishedAt } =
     video.snippet;
 
-  const [isOpen, setIsOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
 
-  const handleOpen = () => {
-    if (isOpen) {
+  const handleInfoOpen = () => {
+    if (infoOpen) {
       return;
     } else {
-      return setIsOpen(true);
+      return setInfoOpen(true);
     }
   };
 
@@ -50,20 +51,20 @@ export default function VideoDetail() {
 
             <div
               className={`${
-                isOpen
-                  ? styles.OepndescriptionContainer
+                infoOpen
+                  ? styles.oepnDescriptionContainer
                   : styles.descriptionContainer
               }`}
-              onClick={handleOpen}
+              onClick={handleInfoOpen}
             >
-              <pre className={`${isOpen ? styles.OpenPre : styles.pre}`}>
+              <pre className={`${infoOpen ? styles.OpenPre : styles.pre}`}>
                 {description}
               </pre>
               <button
                 className={styles.button}
-                onClick={() => setIsOpen(false)}
+                onClick={() => setInfoOpen(false)}
               >
-                {isOpen ? "간략히" : "더보기"}
+                {infoOpen ? "간략히" : "더보기"}
               </button>
             </div>
           </div>

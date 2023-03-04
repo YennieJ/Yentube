@@ -1,16 +1,19 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
+import Channelinfo from "./components/ChannelInfo/ChannelInfo";
+
 import styles from "./VideoItem.module.css";
-import Channelinfo from "../ChannelInfo/ChannelInfo";
 
 const VideoItem = ({ video, type }) => {
-  const { title, thumbnails, channelTitle, publishedAt, channelId } =
-    video.snippet;
   const navigate = useNavigate();
 
+  const { title, thumbnails, channelTitle, publishedAt, channelId } =
+    video.snippet;
+
+  //for css
   //VideoList에서 가져옴.
   const isList = type === "list";
-
   //Related에서 가져옴 ChannelInfo에 전달해야하는
   const isRelated = type === "related";
 

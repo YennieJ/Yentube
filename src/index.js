@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./app";
+import App from "./App";
 import NotFound from "./pages/NotFound";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import VideoList from "./pages/VideoList/VidoeList";
-import VideoDetail from "./components/VideoDetail/VideoDetail";
+import VideoDetail from "./pages/VideoDetail/VideoDetail";
 
 const router = createBrowserRouter([
   {

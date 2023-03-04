@@ -15,6 +15,8 @@ const Login = () => {
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   const [isSidebar, setIsSideber] = useState(false);
+
+  //이거 나누고싶은데.
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {

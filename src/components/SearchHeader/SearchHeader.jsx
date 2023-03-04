@@ -1,17 +1,18 @@
 import React, { memo, useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, Link, useParams } from "react-router-dom";
-import styles from "./search_header.module.css";
-import { BsSearch } from "react-icons/bs";
 
 import Login from "../Login/Login";
+
+import styles from "./SearchHeader.module.css";
+import { BsSearch } from "react-icons/bs";
 
 const SearchHeader = memo(() => {
   const navigate = useNavigate();
   const { keyword } = useParams();
   const [searchValue, setSearchValue] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSearchSubmit = (e) => {
     e.preventDefault();
     searchValue && navigate(`videos/${searchValue}`);
   };
@@ -24,7 +25,7 @@ const SearchHeader = memo(() => {
         <img src="/img/logo.png" alt="logo" />
         <h1 className={styles.title}>Yentube</h1>
       </Link>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSearchSubmit}>
         <input
           className={styles.input}
           type="serach"
