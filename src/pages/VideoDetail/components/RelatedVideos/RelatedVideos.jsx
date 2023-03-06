@@ -3,6 +3,7 @@ import { useYoutubeApi } from "../../../../context/YoutubeApiContext";
 import { useQuery } from "@tanstack/react-query";
 
 import VideoItem from "../../../../components/VideoItem/VideoItem";
+import Loading from "../../../../components/Loading/Loading";
 
 import styles from "./RelatedVideos.module.css";
 const RelatedVideos = ({ id }) => {
@@ -17,7 +18,7 @@ const RelatedVideos = ({ id }) => {
 
   return (
     <>
-      {isLoading && <p>Loding...</p>}
+      {isLoading && <Loading type="relatedLoading" />}
       {error && <p>ERROR</p>}
       {videos && (
         <div className={styles.related}>

@@ -4,8 +4,8 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { useYoutubeApi } from "../../context/YoutubeApiContext";
 
+import Loading from "../../components/Loading/Loading";
 import VideoItem from "../../components/VideoItem/VideoItem";
-import ListLoading from "./ListLoading/ListLoading";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
 
 import styles from "./VidoeList.module.css";
@@ -65,7 +65,7 @@ const VideoList = () => {
 
   return (
     <>
-      {isLoading && <ListLoading />}
+      {isLoading && <Loading />}
       {error && <p>ERROR</p>}
 
       {videos && (
@@ -81,7 +81,6 @@ const VideoList = () => {
           )}
         </ul>
       )}
-
       <div ref={loadMoreRef} />
     </>
   );
