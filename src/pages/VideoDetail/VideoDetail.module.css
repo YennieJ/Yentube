@@ -3,7 +3,20 @@
   flex-direction: column;
   align-items: center;
 }
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(
+    180deg,
+    black,
+    rgb(30, 30, 30) 1% 80%,
 
+    black
+  );
+  padding-top: 61.8%;
+  width: 100%;
+}
 .content {
   display: flex;
   flex-direction: column;
@@ -15,7 +28,7 @@
 .videoContainer {
   height: 0;
   padding-top: 61.8%;
-  width: 100%;
+  width: 99%;
   position: relative;
 }
 
@@ -82,5 +95,20 @@
   .article {
     padding-right: 30px;
     max-width: 1200px;
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: radial-gradient(
+      farthest-side at 40% 30%,
+      rgb(90, 90, 90),
+      rgb(120, 120, 120),
+      black
+    );
+
+    padding-top: 45%;
+    width: 80%;
   }
 }

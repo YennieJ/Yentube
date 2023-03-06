@@ -26,6 +26,7 @@ export default function VideoDetail() {
 
   return (
     <div className={styles.container}>
+      <div className={styles.background} />
       <section className={styles.content}>
         <article className={styles.article}>
           <div className={styles.videoContainer}>
