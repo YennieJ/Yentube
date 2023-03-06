@@ -60,3 +60,9 @@
   outline: 0;
   cursor: pointer;
 }
+
+@media screen and (max-width: 499px) {
+  .header {
+    padding: 5px;
+  }
+}

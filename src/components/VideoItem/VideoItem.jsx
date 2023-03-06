@@ -29,14 +29,13 @@ const VideoItem = ({ video, type }) => {
         src={thumbnails.medium.url}
         alt={title}
       />
-
       <Channelinfo
         id={channelId}
         title={title}
         name={channelTitle}
         time={publishedAt}
         isRelated={isRelated}
-      />
+      />{" "}
     </li>
   );
 };

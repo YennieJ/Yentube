@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .background {
   position: absolute;
   top: 0;
@@ -110,5 +111,12 @@
 
     padding-top: 45%;
     width: 80%;
+  }
+}
+
+/* 제일 작은거 */
+@media screen and (max-width: 500px) {
+  .listVideo {
+    width: 100%;
   }
 }

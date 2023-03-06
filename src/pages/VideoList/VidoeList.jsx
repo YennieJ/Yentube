@@ -81,6 +81,7 @@ const VideoList = () => {
           )}
         </ul>
       )}
+      <Loading />
       <div ref={loadMoreRef} />
     </>
   );

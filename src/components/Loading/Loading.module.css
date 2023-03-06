@@ -1,18 +1,14 @@
 .container {
-  place-items: center;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-
-  row-gap: 10px;
-  column-gap: 30px;
-  padding: 0 80px;
-  border: 1px solid blue;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .list {
-  width: 370px;
+  width: 350px;
   height: 350px;
   list-style-type: none;
+  margin: 0 5px;
 
   display: flex;
   flex-direction: column;
@@ -60,4 +56,22 @@
   height: 100px;
 
   background-color: rgb(40, 40, 40);
+}
+
+@media screen and (max-width: 320px) {
+  .list {
+    width: 320px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .list {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1500px) {
+  .list {
+    width: 320px;
+  }
 }
