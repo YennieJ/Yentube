@@ -16,6 +16,14 @@
 .videos {
   display: flex;
   flex-direction: column;
-  padding-left: 10;
   width: 100%;
 }
+
+/* @media screen and (max-width: 499px) {
+  .related {
+    padding: 0;
+  }
+  .title {
+    margin: 20px 5px;
+  }
+} */

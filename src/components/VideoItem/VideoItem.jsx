@@ -35,7 +35,7 @@ const VideoItem = ({ video, type }) => {
         name={channelTitle}
         time={publishedAt}
         isRelated={isRelated}
-      />{" "}
+      />
     </li>
   );
 };

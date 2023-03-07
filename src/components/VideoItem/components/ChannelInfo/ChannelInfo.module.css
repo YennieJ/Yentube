@@ -13,7 +13,6 @@
 
 .relatedCotainer {
   display: flex;
-  /* width: 200px; */
 }
 
 .imgContainer {
@@ -84,4 +83,16 @@
   font-size: 0.8rem;
   font-weight: 500;
   color: gray;
+}
+
+@media screen and (max-width: 499px) {
+  .mobile {
+    display: flex;
+  }
+  .name {
+    margin-right: 5px;
+  }
+  .relatedCotainer {
+    padding: 10px 5px;
+  }
 }

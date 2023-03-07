@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import ChannelInfo from "../../components/VideoItem/components/ChannelInfo/ChannelInfo";
@@ -23,6 +22,19 @@ export default function VideoDetail() {
       return setInfoOpen(true);
     }
   };
+
+  const [size, setSize] = useState(window.innerWidth > 499);
+
+  const resizeHanlder = () => {
+    const width = window.innerWidth > 499;
+    setSize(width);
+  };
+  useEffect(() => {
+    window.addEventListener("resize", resizeHanlder);
+    return () => {
+      window.removeEventListener("resize", resizeHanlder);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -58,7 +70,7 @@ export default function VideoDetail() {
               }`}
               onClick={handleInfoOpen}
             >
-              <pre className={`${infoOpen ? styles.OpenPre : styles.pre}`}>
+              <pre className={`${infoOpen ? styles.openPre : styles.pre}`}>
                 {description}
               </pre>
               <button
@@ -68,6 +80,18 @@ export default function VideoDetail() {
                 {infoOpen ? "간략히" : "더보기"}
               </button>
             </div>
+
+            {!size && (
+              <pre className={`${infoOpen ? styles.openPre : styles.pre}`}>
+                {description}
+              </pre>
+            )}
+            <button
+              className={styles.button}
+              onClick={() => setInfoOpen(!infoOpen)}
+            >
+              {infoOpen ? "간략히" : "더보기"}
+            </button>
           </div>
         </article>
         <section className={styles.relatedVidoes}>
