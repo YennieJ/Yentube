@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
-import Login from "../Login/Login";
+import Search from "./components/Search/Search";
+import Login from "./components/Login/Login";
 
 import styles from "./Header.module.css";
-import Search from "./Search/Search";
 
 const Header = memo(() => {
   return (
