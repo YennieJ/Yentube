@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+import useSize from "hooks/useSize";
+
 import styles from "./Search.module.css";
 import { BsSearch } from "react-icons/bs";
 
 const Search = () => {
   const navigate = useNavigate();
   const { keyword } = useParams();
+
+  const size = useSize();
+
   const [searchValue, setSearchValue] = useState("");
+  const [searchModal, setSearchModal] = useState(false);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -16,20 +22,8 @@ const Search = () => {
       setSearchModal(false);
     }
   };
-  useEffect(() => setSearchValue(keyword || ""), [keyword]);
 
-  const [searchModal, setSearchModal] = useState(false);
-  const [size, setSize] = useState(window.innerWidth > 499);
-  const resizeHanlder = () => {
-    const width = window.innerWidth > 499;
-    setSize(width);
-  };
-  useEffect(() => {
-    window.addEventListener("resize", resizeHanlder);
-    return () => {
-      window.removeEventListener("resize", resizeHanlder);
-    };
-  }, []);
+  useEffect(() => setSearchValue(keyword || ""), [keyword]);
 
   useEffect(() => {
     if (!size && searchModal) {
@@ -40,6 +34,7 @@ const Search = () => {
     }
   }, [searchModal, size]);
 
+  console.log("search");
   return (
     <>
       <div className={styles.searchbarContainer}>
@@ -67,9 +62,10 @@ const Search = () => {
         </button>
       </div>
 
+      {/* mobile화면 일때 */}
       {searchModal && (
         <div className={styles.searchModalContainer}>
-          <div className={styles.border}>
+          <div className={styles.searchModalHeader}>
             <button
               className={styles.backButton}
               type="button"

@@ -63,7 +63,7 @@
   z-index: 9999;
 }
 
-.border {
+.searchModalHeader {
   height: 70px;
   border-bottom: 2px solid rgb(40, 40, 40);
 

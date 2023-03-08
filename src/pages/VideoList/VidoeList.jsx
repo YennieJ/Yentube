@@ -2,11 +2,11 @@ import React, { useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { useYoutubeApi } from "../../context/YoutubeApiContext";
+import { useYoutubeApi } from "context/YoutubeApiContext";
 
-import Loading from "../../components/Loading/Loading";
-import VideoItem from "../../components/VideoItem/VideoItem";
-import useIntersectionObserver from "../../hooks/useIntersectionObserver";
+import Loading from "components/Loading/Loading";
+import VideoItem from "components/VideoItem/VideoItem";
+import useIntersectionObserver from "hooks/useIntersectionObserver";
 
 import styles from "./VidoeList.module.css";
 
