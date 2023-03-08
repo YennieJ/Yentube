@@ -32,9 +32,10 @@
   border-radius: 5px;
   margin-right: 8px;
 }
-/* 
+
 @media screen and (max-width: 320px) {
-  .listVideo {
+  .listVideo,
+  .relatedVideo {
     width: 320px;
   }
 }
@@ -43,10 +44,9 @@
   .listVideo,
   .relatedVideo {
     width: 100%;
-    height: 350px;
-    list-style-type: none;
     cursor: pointer;
     display: block;
+    margin: 0;
   }
   .listThumbnail,
   .relatedThumbnail {
@@ -54,7 +54,6 @@
     width: 100%;
     max-height: 100%;
     border-radius: 0;
-    margin: 0;
   }
 }
 
@@ -62,4 +61,4 @@
   .listVideo {
     width: 320px;
   }
-} */
+}

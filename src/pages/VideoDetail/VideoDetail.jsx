@@ -17,7 +17,8 @@ export default function VideoDetail() {
 
   const handleInfoOpen = () => {
     if (infoOpen) {
-      return;
+      setInfoOpen(false);
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
       return setInfoOpen(true);
     }
@@ -73,25 +74,21 @@ export default function VideoDetail() {
               <pre className={`${infoOpen ? styles.openPre : styles.pre}`}>
                 {description}
               </pre>
-              <button
-                className={styles.button}
-                onClick={() => setInfoOpen(false)}
-              >
+              <button className={styles.button} onClick={() => handleInfoOpen}>
                 {infoOpen ? "간략히" : "더보기"}
               </button>
             </div>
 
             {!size && (
-              <pre className={`${infoOpen ? styles.openPre : styles.pre}`}>
-                {description}
-              </pre>
+              <>
+                <pre className={`${infoOpen ? styles.openPre : styles.pre}`}>
+                  {description}
+                </pre>
+                <button className={styles.button} onClick={handleInfoOpen}>
+                  {infoOpen ? "간략히" : "더보기"}
+                </button>
+              </>
             )}
-            <button
-              className={styles.button}
-              onClick={() => setInfoOpen(!infoOpen)}
-            >
-              {infoOpen ? "간략히" : "더보기"}
-            </button>
           </div>
         </article>
         <section className={styles.relatedVidoes}>

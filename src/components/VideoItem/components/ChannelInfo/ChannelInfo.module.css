@@ -92,7 +92,11 @@
   .name {
     margin-right: 5px;
   }
-  .relatedCotainer {
-    padding: 10px 5px;
+  .relatedCotainer,
+  .listContainer {
+    padding: 10px 5px 20px;
+  }
+  .detailTitle {
+    padding: 0 5px;
   }
 }

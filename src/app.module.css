@@ -1,5 +1,5 @@
 .app {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   color: white;
   background: black;
@@ -16,10 +16,9 @@
 }
 
 body {
-  width: 100vw;
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+
   font-size: 100%;
   font-style: normal;
   font-weight: 300;
@@ -275,20 +274,4 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration,
 progress {
   -webkit-appearance: none;
-}
-
-.container {
-  height: 100%;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
 }

@@ -77,13 +77,14 @@
   line-height: 1.2rem;
   width: 100%;
 
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   height: 100%;
 }
 
 .button {
   font-size: 16px;
   font-weight: 500;
+  padding-top: 10px;
 }
 
 @media screen and (min-width: 1000px) {
@@ -116,17 +117,6 @@
   }
 }
 
-.pre {
-  white-space: pre-wrap;
-
-  line-height: 1.2rem;
-  width: 100%;
-  height: 60px;
-  overflow: hidden;
-
-  padding-bottom: 10px;
-}
-
 @media screen and (max-width: 499px) {
   .listVideo {
     width: 100%;
@@ -138,19 +128,31 @@
     display: none;
   }
   .content {
-    padding: 20px 0;
+    padding: 0;
   }
   .descriptionContainer,
   .oepnDescriptionContainer {
     display: none;
   }
   .button {
-    padding-top: 15px;
+    padding: 15px 5px 0;
+  }
+  .infoWrapper {
+    padding: 0;
+  }
+
+  .pre,
+  .openPre {
+    padding: 5px;
   }
 }
 
 @media screen and (max-width: 320px) {
   .video {
+    width: 320px;
+  }
+  .pre,
+  .openPre {
     width: 320px;
   }
 }
