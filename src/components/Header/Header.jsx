@@ -7,6 +7,7 @@ import Login from "./components/Login/Login";
 import styles from "./Header.module.css";
 
 const Header = memo(() => {
+  console.log("header");
   return (
     <>
       <header className={styles.header}>

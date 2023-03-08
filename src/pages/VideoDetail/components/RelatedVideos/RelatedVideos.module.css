@@ -1,29 +1,32 @@
 .related {
-  padding-left: 5px;
   width: 100%;
+  padding-left: 5px;
 }
 
 .title {
-  font-size: 16px;
-  font-weight: 400;
   border-radius: 5px;
-  background-color: rgb(80, 80, 80);
-  display: inline-block;
   padding: 7px;
   margin-bottom: 5px;
+
+  display: inline-block;
+
+  font-size: 16px;
+  font-weight: 400;
+  background-color: rgb(80, 80, 80);
 }
 
 .videos {
+  width: 100%;
+
   display: flex;
   flex-direction: column;
-  width: 100%;
 }
 
 @media screen and (max-width: 499px) {
   .related {
+    border-top: 1px dashed #fff;
     padding: 20px 0;
     margin-top: 20px;
-    border-top: 1px dashed #fff;
   }
   .title {
     margin: 0 5px 10px;

@@ -16,8 +16,8 @@
 }
 
 .barInput {
-  width: 50%;
   max-width: 600px;
+  width: 50%;
   height: 100%;
   border: 1px solid rgb(40, 40, 40);
   border-radius: 50px 0 0 50px;

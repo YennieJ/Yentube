@@ -1,42 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import ChannelInfo from "../../components/VideoItem/components/ChannelInfo/ChannelInfo";
+import ChannelInfo from "components/VideoItem/components/ChannelInfo/ChannelInfo";
 import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
+import useSize from "hooks/useSize";
 
 import styles from "./VideoDetail.module.css";
 
-export default function VideoDetail() {
+const VideoDetail = () => {
   const {
     state: { video },
   } = useLocation();
-  const { title, channelId, channelTitle, description, publishedAt } =
-    video.snippet;
+  const { title, description } = video.snippet;
+  const size = useSize();
 
-  const [infoOpen, setInfoOpen] = useState(false);
+  const [openDescription, setOpenDescription] = useState(false);
 
-  const handleInfoOpen = () => {
-    if (infoOpen) {
-      setInfoOpen(false);
+  const handleDescription = () => {
+    if (openDescription) {
+      setOpenDescription(false);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      return setInfoOpen(true);
+      return setOpenDescription(true);
     }
   };
 
-  const [size, setSize] = useState(window.innerWidth > 499);
-
-  const resizeHanlder = () => {
-    const width = window.innerWidth > 499;
-    setSize(width);
-  };
-  useEffect(() => {
-    window.addEventListener("resize", resizeHanlder);
-    return () => {
-      window.removeEventListener("resize", resizeHanlder);
-    };
-  }, []);
-
+  console.log("detail");
   return (
     <div className={styles.container}>
       <div className={styles.background} />
@@ -55,37 +44,47 @@ export default function VideoDetail() {
             />
           </div>
           <div className={styles.infoWrapper}>
-            <ChannelInfo
-              id={channelId}
-              title={title}
-              name={channelTitle}
-              time={publishedAt}
-              type="detail"
-            />
+            <ChannelInfo video={video.snippet} type="detail" />
 
             <div
               className={`${
-                infoOpen
-                  ? styles.oepnDescriptionContainer
+                openDescription
+                  ? styles.openDescriptionContainer
                   : styles.descriptionContainer
               }`}
-              onClick={handleInfoOpen}
+              onClick={handleDescription}
             >
-              <pre className={`${infoOpen ? styles.openPre : styles.pre}`}>
+              <pre
+                className={`${
+                  openDescription ? styles.openDescription : styles.description
+                }`}
+              >
                 {description}
               </pre>
-              <button className={styles.button} onClick={() => handleInfoOpen}>
-                {infoOpen ? "간략히" : "더보기"}
+              <button
+                className={styles.descriptionButton}
+                onClick={() => handleDescription}
+              >
+                {openDescription ? "간략히" : "더보기"}
               </button>
             </div>
 
             {!size && (
               <>
-                <pre className={`${infoOpen ? styles.openPre : styles.pre}`}>
+                <pre
+                  className={`${
+                    openDescription
+                      ? styles.openDescription
+                      : styles.description
+                  }`}
+                >
                   {description}
                 </pre>
-                <button className={styles.button} onClick={handleInfoOpen}>
-                  {infoOpen ? "간략히" : "더보기"}
+                <button
+                  className={styles.descriptionButton}
+                  onClick={handleDescription}
+                >
+                  {openDescription ? "간략히" : "더보기"}
                 </button>
               </>
             )}
@@ -97,4 +96,6 @@ export default function VideoDetail() {
       </section>
     </div>
   );
-}
+};
+
+export default VideoDetail;

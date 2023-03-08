@@ -1,10 +1,14 @@
 import React from "react";
+
 import styles from "./Loading.module.css";
+
 const Loading = ({ type }) => {
   const emtpyArray = [1, 2, 3, 4, 5, 6, 7, 8];
 
   //for css
   const isRelated = type === "relatedLoading";
+
+  console.log("loading");
   return (
     <>
       <ul className={isRelated ? styles.relatedContainer : styles.container}>

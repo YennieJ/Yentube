@@ -62,7 +62,7 @@ const VideoList = () => {
     onIntersect: fetchNextPage,
     enabled: hasNextPage,
   });
-
+  console.log("list");
   return (
     <>
       {isLoading && <Loading />}
@@ -81,7 +81,6 @@ const VideoList = () => {
           )}
         </ul>
       )}
-      <Loading />
       <div ref={loadMoreRef} />
     </>
   );

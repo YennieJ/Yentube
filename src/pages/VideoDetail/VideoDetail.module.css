@@ -5,9 +5,13 @@
 }
 
 .background {
+  width: 100%;
+  padding-top: 61.8%;
+
   position: absolute;
   top: 0;
   left: 0;
+
   background: linear-gradient(
     180deg,
     black,
@@ -15,135 +19,134 @@
 
     black
   );
-  padding-top: 61.8%;
-  width: 100%;
 }
 .content {
+  padding: 20px 30px;
+
   display: flex;
   flex-direction: column;
-  padding: 20px 30px;
 }
 .article {
   width: 100%;
 }
 .videoContainer {
-  height: 0;
+  width: 100%;
   padding-top: 61.8%;
-  width: 99%;
+
   position: relative;
 }
 
 .video {
   width: 100%;
   height: 100%;
+
   position: absolute;
   top: 0;
 }
 
 .infoWrapper {
-  padding: 12px 10px 24px;
   width: 100%;
+  padding: 12px 10px 24px;
 }
 
 .descriptionContainer {
-  background-color: rgb(40, 40, 40);
+  width: 100%;
   border-radius: 10px;
   padding: 20px 15px;
+
+  background-color: rgb(40, 40, 40);
+
   cursor: pointer;
-  width: 100%;
 }
 
-.oepnDescriptionContainer {
-  background-color: rgb(40, 40, 40);
+.openDescriptionContainer {
   border-radius: 10px;
   padding: 20px 15px;
+
+  background-color: rgb(40, 40, 40);
 
   cursor: default;
 }
 
-.pre {
-  white-space: pre-wrap;
-
-  line-height: 1.2rem;
+.description {
   width: 100%;
   height: 60px;
-  overflow: hidden;
-
   padding-bottom: 10px;
-}
 
-.openPre {
   white-space: pre-wrap;
   line-height: 1.2rem;
-  width: 100%;
 
-  padding-bottom: 20px;
-  height: 100%;
+  overflow: hidden;
 }
 
-.button {
+.openDescription {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 20px;
+
+  white-space: pre-wrap;
+  line-height: 1.2rem;
+}
+
+.descriptionButton {
+  padding-top: 10px;
+
   font-size: 16px;
   font-weight: 500;
-  padding-top: 10px;
 }
 
 @media screen and (min-width: 1000px) {
-  .content {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
-  .relatedVidoes {
-    width: 500px;
-  }
-  .article {
-    padding-right: 30px;
-    max-width: 1200px;
-  }
-
   .background {
+    width: 80%;
+    padding-top: 45%;
+
     position: absolute;
     top: 0;
     left: 0;
+
     background: radial-gradient(
       farthest-side at 40% 30%,
       rgb(90, 90, 90),
       rgb(120, 120, 120),
       black
     );
+  }
 
-    padding-top: 45%;
-    width: 80%;
+  .content {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+  }
+  .article {
+    max-width: 1200px;
+    padding-right: 30px;
   }
 }
 
 @media screen and (max-width: 499px) {
-  .listVideo {
-    width: 100%;
-  }
-  .video {
-    width: 100%;
-  }
   .background {
     display: none;
   }
   .content {
     padding: 0;
   }
-  .descriptionContainer,
-  .oepnDescriptionContainer {
-    display: none;
-  }
-  .button {
-    padding: 15px 5px 0;
+  .video {
+    width: 100%;
   }
   .infoWrapper {
     padding: 0;
   }
-
-  .pre,
-  .openPre {
+  .descriptionContainer,
+  .openDescriptionContainer {
+    display: none;
+  }
+  .description,
+  .openDescription {
     padding: 5px;
+  }
+  .descriptionButton {
+    padding: 15px 5px 0;
   }
 }
 
@@ -151,8 +154,8 @@
   .video {
     width: 320px;
   }
-  .pre,
-  .openPre {
+  .description,
+  .openDescription {
     width: 320px;
   }
 }

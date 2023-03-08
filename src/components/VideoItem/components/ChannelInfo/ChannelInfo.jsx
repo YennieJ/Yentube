@@ -1,31 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { useYoutubeApi } from "../../../../context/YoutubeApiContext";
+import { useYoutubeApi } from "context/YoutubeApiContext";
 
-import { formatAgo } from "../../../../util/date";
+import formatAgo from "util/date";
+import useSize from "hooks/useSize";
 
 import styles from "./ChannelInfo.module.css";
 
-const ChannelInfo = ({ id, title, name, time, type, isRelated }) => {
+const ChannelInfo = ({ type, isRelated, video }) => {
+  const { channelId, title, channelTitle: channelName, publishedAt } = video;
   const { youtube } = useYoutubeApi();
-  const { data: url } = useQuery(["channel", id], () =>
-    youtube.channelImageURL(id)
+  const { data: url } = useQuery(["channel", channelId], () =>
+    youtube.channelImageURL(channelId)
   );
 
   //for css
   const isDetail = type === "detail";
 
-  const [size, setSize] = useState(window.innerWidth > 499);
-  const resizeHanlder = () => {
-    const width = window.innerWidth > 499;
-    setSize(width);
-  };
-  useEffect(() => {
-    window.addEventListener("resize", resizeHanlder);
-    return () => {
-      window.removeEventListener("resize", resizeHanlder);
-    };
-  }, []);
+  const size = useSize();
 
   return (
     <div>
@@ -56,8 +48,8 @@ const ChannelInfo = ({ id, title, name, time, type, isRelated }) => {
             </h2>
           )}
           <div className={styles.mobile}>
-            <p className={styles.name}>{name}</p>
-            <p className={styles.date}>{formatAgo(time, "ko")}</p>
+            <p className={styles.channelName}>{channelName}</p>
+            <p className={styles.date}>{formatAgo(publishedAt, "ko")}</p>
           </div>
         </div>
       </div>

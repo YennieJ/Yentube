@@ -8,8 +8,7 @@ import styles from "./VideoItem.module.css";
 const VideoItem = ({ video, type }) => {
   const navigate = useNavigate();
 
-  const { title, thumbnails, channelTitle, publishedAt, channelId } =
-    video.snippet;
+  const { title, thumbnails } = video.snippet;
 
   //for css
   //VideoList에서 가져옴.
@@ -29,13 +28,8 @@ const VideoItem = ({ video, type }) => {
         src={thumbnails.medium.url}
         alt={title}
       />
-      <Channelinfo
-        id={channelId}
-        title={title}
-        name={channelTitle}
-        time={publishedAt}
-        isRelated={isRelated}
-      />
+
+      <Channelinfo video={video.snippet} isRelated={isRelated} />
     </li>
   );
 };

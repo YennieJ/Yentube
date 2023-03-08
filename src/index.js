@@ -25,11 +25,11 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <GoogleOAuthProvider
-      clientId={`${process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}`}
-    >
-      <RouterProvider router={router} />
-    </GoogleOAuthProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <GoogleOAuthProvider
+    clientId={`${process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}`}
+  >
+    <RouterProvider router={router} />
+  </GoogleOAuthProvider>
+  // </React.StrictMode>
 );
