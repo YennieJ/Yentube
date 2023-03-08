@@ -5,6 +5,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { useYoutubeApi } from "context/YoutubeApiContext";
 
 import Loading from "components/Loading/Loading";
+import ErrorPage from "components/ErrorPage/ErrorPage";
 import VideoItem from "components/VideoItem/VideoItem";
 import useIntersectionObserver from "hooks/useIntersectionObserver";
 
@@ -26,7 +27,6 @@ const VideoList = () => {
     error,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage,
     //무한스크롤을 구동하기위한 useInfiniteQuery
   } = useInfiniteQuery(
     ["videos", keyword],
@@ -65,11 +65,10 @@ const VideoList = () => {
     enabled: hasNextPage,
   });
 
-  isFetchingNextPage && console.log("지금");
   return (
     <>
       {isLoading && <Loading />}
-      {error && <p>ERROR</p>}
+      {error && <ErrorPage />}
 
       {videos && (
         <ul className={styles.videos}>
@@ -84,6 +83,7 @@ const VideoList = () => {
           )}
         </ul>
       )}
+
       <div ref={loadMoreRef} />
     </>
   );

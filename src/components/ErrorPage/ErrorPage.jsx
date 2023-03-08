@@ -1,6 +1,6 @@
 import React from "react";
 
-const NotFound = () => {
+const ErrorPage = () => {
   return (
     <div
       style={{
@@ -18,10 +18,10 @@ const NotFound = () => {
           fontWeight: "600",
         }}
       >
-        Not Found
+        !ERROR!
       </div>
     </div>
   );
 };
 
-export default NotFound;
+export default ErrorPage;
