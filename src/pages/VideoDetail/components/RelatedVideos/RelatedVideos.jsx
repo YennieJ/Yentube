@@ -15,7 +15,6 @@ const RelatedVideos = ({ id }) => {
   } = useQuery(["related", id], () => youtube.relatedVideo(id), {
     staleTime: 1000 * 60 * 5,
   });
-  console.log("related");
   return (
     <>
       {isLoading && <Loading type="relatedLoading" />}

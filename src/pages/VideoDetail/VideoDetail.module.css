@@ -136,6 +136,8 @@
   }
   .infoWrapper {
     padding: 0;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #fff;
   }
   .descriptionContainer,
   .openDescriptionContainer {

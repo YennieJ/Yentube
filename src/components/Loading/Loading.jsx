@@ -8,7 +8,6 @@ const Loading = ({ type }) => {
   //for css
   const isRelated = type === "relatedLoading";
 
-  console.log("loading");
   return (
     <>
       <ul className={isRelated ? styles.relatedContainer : styles.container}>

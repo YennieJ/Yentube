@@ -25,7 +25,6 @@ const VideoDetail = () => {
     }
   };
 
-  console.log("detail");
   return (
     <div className={styles.container}>
       <div className={styles.background} />

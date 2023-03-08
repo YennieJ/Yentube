@@ -67,9 +67,24 @@
   }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 499px) {
   .list {
     width: 100%;
+  }
+  .relatedImg {
+    min-width: 100%;
+    height: 250px;
+    margin: 0;
+  }
+  .relatedInfo {
+    display: none;
+  }
+  .relatedContainer {
+    padding: 0;
+  }
+  .relatedList {
+    width: 100%;
+    display: block;
   }
 }
 

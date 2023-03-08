@@ -19,12 +19,14 @@ const VideoList = () => {
   //api 호출
   const { youtube } = useYoutubeApi();
 
+  //스크롤위치를 기억하지않아도 되는게 좋은점
   const {
     data: videos,
     isLoading,
     error,
     fetchNextPage,
     hasNextPage,
+    isFetchingNextPage,
     //무한스크롤을 구동하기위한 useInfiniteQuery
   } = useInfiniteQuery(
     ["videos", keyword],
@@ -62,7 +64,8 @@ const VideoList = () => {
     onIntersect: fetchNextPage,
     enabled: hasNextPage,
   });
-  console.log("list");
+
+  isFetchingNextPage && console.log("지금");
   return (
     <>
       {isLoading && <Loading />}
@@ -81,7 +84,6 @@ const VideoList = () => {
           )}
         </ul>
       )}
-
       <div ref={loadMoreRef} />
     </>
   );
