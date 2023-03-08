@@ -62,8 +62,6 @@ const Login = () => {
     },
   });
 
-  console.log("login");
-
   return (
     <>
       {isLogin ? (

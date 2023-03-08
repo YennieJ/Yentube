@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import Search from "./components/Search/Search";
@@ -6,8 +6,7 @@ import Login from "./components/Login/Login";
 
 import styles from "./Header.module.css";
 
-const Header = memo(() => {
-  console.log("header");
+const Header = () => {
   return (
     <>
       <header className={styles.header}>
@@ -20,5 +19,5 @@ const Header = memo(() => {
       </header>
     </>
   );
-});
+};
 export default Header;

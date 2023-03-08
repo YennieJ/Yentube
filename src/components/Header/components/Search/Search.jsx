@@ -19,22 +19,24 @@ const Search = () => {
     e.preventDefault();
     if (searchValue) {
       navigate(`videos/${searchValue}`);
-      setSearchModal(false);
     }
   };
 
   useEffect(() => setSearchValue(keyword || ""), [keyword]);
 
   useEffect(() => {
-    if (!size && searchModal) {
+    if (!size && searchModal && !keyword) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.removeProperty("overflow");
+    }
+  }, [keyword, searchModal, size]);
+
+  useEffect(() => {
+    if (!keyword) {
       setSearchModal(false);
     }
-  }, [searchModal, size]);
-
-  console.log("search");
+  }, [keyword]);
   return (
     <>
       <div className={styles.searchbarContainer}>
@@ -64,12 +66,16 @@ const Search = () => {
 
       {/* mobile화면 일때 */}
       {searchModal && (
-        <div className={styles.searchModalContainer}>
+        <div
+          className={`${
+            keyword ? styles.keywordContainer : styles.searchModalContainer
+          }`}
+        >
           <div className={styles.searchModalHeader}>
             <button
               className={styles.backButton}
               type="button"
-              onClick={() => setSearchModal(false)}
+              onClick={() => navigate(-1)}
             >
               &lt;
             </button>
