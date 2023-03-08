@@ -22,6 +22,14 @@ const Search = () => {
     }
   };
 
+  const handleGobackButton = () => {
+    if (!keyword) {
+      navigate("/");
+      setSearchModal(false);
+    }
+    navigate(-1, { replace: true });
+  };
+
   useEffect(() => setSearchValue(keyword || ""), [keyword]);
 
   useEffect(() => {
@@ -32,11 +40,13 @@ const Search = () => {
     }
   }, [keyword, searchModal, size]);
 
+  //얘를 계속 체크해서 랜더링이 일어남.
   useEffect(() => {
     if (!keyword) {
       setSearchModal(false);
     }
   }, [keyword]);
+
   return (
     <>
       <div className={styles.searchbarContainer}>
@@ -75,7 +85,7 @@ const Search = () => {
             <button
               className={styles.backButton}
               type="button"
-              onClick={() => navigate(-1)}
+              onClick={handleGobackButton}
             >
               &lt;
             </button>
