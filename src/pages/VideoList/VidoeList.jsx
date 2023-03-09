@@ -10,11 +10,12 @@ import VideoItem from "components/VideoItem/VideoItem";
 import useIntersectionObserver from "hooks/useIntersectionObserver";
 
 import styles from "./VidoeList.module.css";
+import { Helmet } from "react-helmet-async";
 
 const VideoList = () => {
   const { keyword } = useParams();
 
-  const [originData, setOriginData] = useState();
+  const [prevData, setPrevData] = useState();
   const [nextPageToken, setNextPageToken] = useState("");
 
   //api 호출
@@ -37,7 +38,7 @@ const VideoList = () => {
           //매번바뀌는 setNextPageToken을 저장하기위해
           setNextPageToken(data.nextPageToken),
           //infinityQuery를 위한 page정보
-          setOriginData(data.pageInfo),
+          setPrevData(data.pageInfo),
           //data
           data.items
         );
@@ -48,7 +49,7 @@ const VideoList = () => {
       getNextPageParam: (page, pages) => {
         //전체 페이지 갯수
         const totalPages =
-          originData && originData.totalResults / originData.resultsPerPage;
+          prevData && prevData.totalResults / prevData.resultsPerPage;
 
         const nextPage = page.page + 1;
         return totalPages > pages.length ? nextPage : undefined;
@@ -67,6 +68,11 @@ const VideoList = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{`${
+          keyword === undefined ? "" : `${keyword} - `
+        }YenTube`}</title>
+      </Helmet>
       {isLoading && <Loading />}
       {error && <ErrorPage />}
 

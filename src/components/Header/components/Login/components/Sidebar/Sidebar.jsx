@@ -11,7 +11,6 @@ const Sidebar = ({ user, setIsLogin, setIsSideber, size }) => {
     sessionStorage.clear();
   };
 
-  console.log("sidebar");
   return (
     <div className={styles.openSidebar}>
       {!size && (

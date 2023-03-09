@@ -2,14 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { GoogleOAuthProvider } from "@react-oauth/google";
-
 import App from "./App";
 import NotFound from "./pages/NotFound";
 import VideoList from "./pages/VideoList/VidoeList";
 import VideoDetail from "./pages/VideoDetail/VideoDetail";
 
 import "./index.css";
+import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   {
@@ -28,10 +27,8 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GoogleOAuthProvider
-      clientId={`${process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}`}
-    >
+    <HelmetProvider>
       <RouterProvider router={router} />
-    </GoogleOAuthProvider>
+    </HelmetProvider>
   </React.StrictMode>
 );

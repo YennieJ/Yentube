@@ -13,7 +13,7 @@ const Header = () => {
         <div className={styles.header}>
           <Link to="/" className={styles.logo}>
             <img src="/img/logo.png" alt="logo" />
-            <h1 className={styles.title}>Yentube</h1>
+            <h1 className={styles.title}>YenTube</h1>
           </Link>
           <Search />
           <Login />
