@@ -7,7 +7,7 @@ import { YoutubeApiProvider } from "./context/YoutubeApiContext";
 
 import Header from "./components/Header/Header";
 
-import styles from "./App.module.css";
+import styles from "./app.module.css";
 
 function App() {
   const queryClient = new QueryClient();
