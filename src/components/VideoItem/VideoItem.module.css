@@ -45,9 +45,12 @@
   .listVideo,
   .relatedVideo {
     width: 100%;
+    height: 100%;
     margin: 0;
+    margin-bottom: 8px;
 
     display: block;
+    /* border: 1px solid red; */
   }
   .listThumbnail,
   .relatedThumbnail {
@@ -56,6 +59,9 @@
     max-height: 100%;
     border-radius: 0;
     margin: 0;
+  }
+  .listVideo:hover {
+    transform: none;
   }
 }
 

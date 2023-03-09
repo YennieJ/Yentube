@@ -16,12 +16,15 @@ const VideoItem = ({ video, type }) => {
   //Related에서 가져옴 ChannelInfo에 전달해야하는
   const isRelated = type === "related";
 
+  const handleNavigate = () => {
+    navigate(`/videos/watch/${video.id}`, { state: { video } });
+    window.scrollTo({ top: 0 });
+  };
+
   return (
     <li
       className={`${isList ? styles.listVideo : styles.relatedVideo}`}
-      onClick={() =>
-        navigate(`/videos/watch/${video.id}`, { state: { video } })
-      }
+      onClick={handleNavigate}
     >
       <img
         className={`${isList ? styles.listThumbnail : styles.relatedThumbnail}`}

@@ -37,7 +37,10 @@ const ChannelInfo = ({ type, isRelated, video }) => {
             {url && <img className={styles.channelImg} src={url} alt="" />}
           </div>
         )}
-        <div className={`${isDetail ? styles.detailInfo : styles.info}`}>
+        <div
+          style={isDetail ? { color: "white" } : { color: "gray" }}
+          className={styles.info}
+        >
           {!isDetail && (
             <h2
               className={`${
@@ -49,7 +52,9 @@ const ChannelInfo = ({ type, isRelated, video }) => {
           )}
           <div className={styles.mobile}>
             <p className={styles.channelName}>{channelName}</p>
-            <p className={styles.date}>{formatAgo(publishedAt, "ko")}</p>
+            {!isDetail && (
+              <p className={styles.date}>{formatAgo(publishedAt, "ko")}</p>
+            )}
           </div>
         </div>
       </div>

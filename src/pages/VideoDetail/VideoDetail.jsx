@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 
 import ChannelInfo from "components/VideoItem/components/ChannelInfo/ChannelInfo";
 import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
-import useSize from "hooks/useSize";
+import formatAgo from "util/date";
 
 import styles from "./VideoDetail.module.css";
 import { Helmet } from "react-helmet-async";
@@ -12,20 +12,20 @@ const VideoDetail = () => {
   const {
     state: { video },
   } = useLocation();
-  const { title, description } = video.snippet;
-  const size = useSize();
+  const { title, description, publishedAt } = video.snippet;
 
   const [openDescription, setOpenDescription] = useState(false);
 
   const handleDescription = () => {
     if (openDescription) {
-      setOpenDescription(false);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      return (
+        setOpenDescription(false),
+        window.scrollTo({ top: 0, behavior: "smooth" })
+      );
     } else {
       return setOpenDescription(true);
     }
   };
-
   return (
     <>
       <Helmet>
@@ -51,49 +51,30 @@ const VideoDetail = () => {
               <ChannelInfo video={video.snippet} type="detail" />
 
               <div
-                className={`${
+                style={
                   openDescription
-                    ? styles.openDescriptionContainer
-                    : styles.descriptionContainer
-                }`}
-                onClick={handleDescription}
+                    ? { cursor: "default" }
+                    : { cursor: "pointer" }
+                }
+                className={styles.descriptionContainer}
+                onClick={() => setOpenDescription(true)}
               >
-                <pre
-                  className={`${
-                    openDescription
-                      ? styles.openDescription
-                      : styles.description
-                  }`}
-                >
-                  {description}
-                </pre>
+                <span className={styles.date}>
+                  {formatAgo(publishedAt, "ko")}
+                </span>
+
+                {openDescription && (
+                  <pre className={styles.description}>{description}</pre>
+                )}
                 <button
-                  className={styles.descriptionButton}
-                  onClick={() => handleDescription}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDescription();
+                  }}
                 >
                   {openDescription ? "간략히" : "더보기"}
                 </button>
               </div>
-
-              {!size && (
-                <>
-                  <pre
-                    className={`${
-                      openDescription
-                        ? styles.openDescription
-                        : styles.description
-                    }`}
-                  >
-                    {description}
-                  </pre>
-                  <button
-                    className={styles.descriptionButton}
-                    onClick={handleDescription}
-                  >
-                    {openDescription ? "간략히" : "더보기"}
-                  </button>
-                </>
-              )}
             </div>
           </article>
           <section className={styles.relatedVidoes}>

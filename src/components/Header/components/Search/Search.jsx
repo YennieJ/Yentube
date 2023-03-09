@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import useSize from "hooks/useSize";
@@ -15,11 +15,14 @@ const Search = () => {
   const [searchValue, setSearchValue] = useState("");
   const [searchModal, setSearchModal] = useState(false);
 
+  const inputFocus = useRef(null);
+
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     if (searchValue) {
       navigate(`videos/${searchValue}`);
     }
+    inputFocus.current.blur();
   };
 
   const handleGobackButton = () => {
@@ -35,6 +38,7 @@ const Search = () => {
   useEffect(() => {
     if (!size && searchModal && !keyword) {
       document.body.style.overflow = "hidden";
+      inputFocus.current.focus();
     } else {
       document.body.style.removeProperty("overflow");
     }
@@ -96,6 +100,7 @@ const Search = () => {
                 placeholder="Search..."
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
+                ref={inputFocus}
               />
             </form>
           </div>
