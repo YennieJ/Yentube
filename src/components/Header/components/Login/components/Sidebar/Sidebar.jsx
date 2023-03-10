@@ -4,7 +4,7 @@ import styles from "./Sidebar.module.css";
 import { BsX } from "react-icons/bs";
 import { TbDoorExit } from "react-icons/tb";
 
-const Sidebar = ({ user, setIsLogin, setIsSideber, size }) => {
+const Sidebar = ({ user, setIsLogin, setIsSideber }) => {
   const signout = () => {
     setIsLogin(false);
     setIsSideber(false);
@@ -13,20 +13,20 @@ const Sidebar = ({ user, setIsLogin, setIsSideber, size }) => {
 
   return (
     <div className={styles.openSidebar}>
-      {!size && (
-        <button
-          className={styles.sidebarCloseButton}
-          onClick={() => setIsSideber(false)}
-        >
-          <BsX />
-        </button>
-      )}
+      <button
+        className={styles.sidebarCloseButton}
+        onClick={() => setIsSideber(false)}
+      >
+        <BsX size={40} />
+      </button>
       <div className={styles.userInfo}>
         <img src={user.picture} alt="" className={styles.insideProfileImg} />
         <span className={styles.userName}>{user.name}</span>
       </div>
-      <button onClick={signout} className={styles.signout}>
-        <TbDoorExit size="30" style={{ marginRight: "15px" }} />
+      <button onClick={signout} className={styles.signoutContainer}>
+        <span className={styles.signoutImoge}>
+          <TbDoorExit size={24} />
+        </span>
         Sing out
       </button>
     </div>

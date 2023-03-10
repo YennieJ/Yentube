@@ -1,20 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useMatch } from "react-router-dom";
 
 import Search from "./components/Search/Search";
 import Login from "./components/Login/Login";
 
 import styles from "./Header.module.css";
+import { BsYoutube } from "react-icons/bs";
 
 const Header = () => {
+  const watchPage = useMatch("/videos/watch/:id");
+
+  const handleGohome = () => {
+    window.location.replace("/");
+  };
   return (
     <>
-      <header className={styles.container}>
+      <header
+        className={`${watchPage ? styles.watchContainer : styles.container}`}
+        onClick={handleGohome}
+      >
         <div className={styles.header}>
-          <Link to="/" className={styles.logo}>
-            <img src="/img/logo.png" alt="logo" />
+          <button className={styles.logo}>
+            <BsYoutube size={30} fill="#f00" />
             <h1 className={styles.title}>YenTube</h1>
-          </Link>
+          </button>
           <Search />
           <Login />
         </div>

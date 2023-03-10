@@ -1,9 +1,30 @@
 .container {
-  height: 70px;
-
+  height: 60px;
   width: 100%;
+
   display: flex;
   align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: black;
+
+  z-index: 1;
+}
+.watchContainer {
+  height: 60px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: black;
+
+  z-index: 1;
 }
 
 .header {
@@ -23,13 +44,33 @@
   cursor: pointer;
 }
 .title {
-  padding-left: 10px;
-
-  font-size: 25px;
+  padding-left: 2px;
+  font-size: 1.3rem;
   font-weight: 600;
+  letter-spacing: -1px;
 }
 
 @media screen and (max-width: 499px) {
+  .container {
+    height: 50px;
+    border-bottom: 2px solid rgb(40, 40, 40);
+    position: static;
+  }
+  .watchContainer {
+    height: 50px;
+    width: 100%;
+    border-bottom: 2px solid rgb(40, 40, 40);
+
+    display: flex;
+    align-items: center;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: black;
+
+    z-index: 1;
+  }
   .header {
     padding: 0px 10px;
   }

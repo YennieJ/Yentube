@@ -122,6 +122,16 @@
     background-color: black;
     padding-top: 10px;
   }
+  .videoContainer {
+    position: fixed;
+    z-index: 99;
+  }
+  .forFixed {
+    width: 100%;
+    padding-top: 61.8%;
+
+    position: relative;
+  }
 }
 
 @media screen and (max-width: 320px) {

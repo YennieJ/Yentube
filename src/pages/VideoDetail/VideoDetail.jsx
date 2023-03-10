@@ -47,6 +47,18 @@ const VideoDetail = () => {
                 frameBorder="0"
               />
             </div>
+            <div className={styles.forFixed}>
+              <iframe
+                className={styles.video}
+                title={title}
+                id="player"
+                type="text/html"
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${video.id}`}
+                frameBorder="0"
+              />
+            </div>
             <div className={styles.infoWrapper}>
               <ChannelInfo video={video.snippet} type="detail" />
 

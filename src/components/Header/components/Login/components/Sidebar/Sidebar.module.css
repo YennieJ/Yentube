@@ -1,26 +1,19 @@
 .openSidebar {
-  width: 280px;
+  width: 230px;
   background-color: rgb(30, 30, 30);
   border-radius: 10px;
 
   display: table;
 
   position: absolute;
-  top: 60px;
-  right: -30px;
+  top: 45px;
+  right: 0;
 
   z-index: 99;
 }
 
 .sidebarCloseButton {
-  width: 50px;
-  height: 50px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 60px;
+  display: none;
 }
 
 .userInfo {
@@ -30,30 +23,36 @@
   display: flex;
 }
 .insideProfileImg {
-  width: 45px;
-  height: 45px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   margin-right: 10px;
 }
 .userName {
-  font-size: 30px;
+  font-size: 20px;
   font-weight: 500;
   align-self: center;
 }
-.signout {
+.signoutContainer {
   width: 100%;
-  padding: 10px 20px;
+  padding: 10px 15px;
   margin: 10px 0;
 
   display: flex;
   align-items: center;
 
-  font-size: 20px;
+  font-size: 1rem;
 }
-.signout:hover {
+.signoutContainer:hover {
   background-color: rgb(100, 100, 100);
 }
 
+.signoutImoge {
+  width: 40px;
+  margin-right: 10px;
+
+  text-align: left;
+}
 @media screen and (max-width: 499px) {
   .openSidebar {
     width: 100%;
@@ -63,5 +62,15 @@
     position: fixed;
     top: 0;
     left: 0;
+  }
+
+  .sidebarCloseButton {
+    width: 40px;
+    height: 40px;
+
+    margin: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

@@ -35,14 +35,14 @@ const Login = () => {
   });
 
   //mobile modal 때 스크롤막기
-  const size = useSize();
+  const pcSize = useSize();
   useEffect(() => {
-    if (!size && isSidebar) {
+    if (!pcSize && isSidebar) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.removeProperty("overflow");
     }
-  }, [isSidebar, size]);
+  }, [isSidebar, pcSize]);
 
   const login = useGoogleLogin({
     onSuccess: async (response) => {
@@ -75,13 +75,12 @@ const Login = () => {
               user={user}
               setIsLogin={setIsLogin}
               setIsSideber={setIsSideber}
-              size={size}
             />
           )}
         </div>
       ) : (
         <button className={styles.login} onClick={login}>
-          <BsPersonCircle size="25" />
+          <BsPersonCircle size="20" />
           <span className={styles.loginStr}>로그인</span>
         </button>
       )}
