@@ -17,10 +17,9 @@ const Header = () => {
     <>
       <header
         className={`${watchPage ? styles.watchContainer : styles.container}`}
-        onClick={handleGohome}
       >
         <div className={styles.header}>
-          <button className={styles.logo}>
+          <button className={styles.logo} onClick={handleGohome}>
             <BsYoutube size={30} fill="#f00" />
             <h1 className={styles.title}>YenTube</h1>
           </button>
