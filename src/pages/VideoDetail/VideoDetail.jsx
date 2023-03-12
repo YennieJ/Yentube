@@ -37,7 +37,7 @@ const VideoDetail = () => {
 
   useEffect(() => {
     setInfoHeight(infoHeightRef.current.clientHeight);
-  }, [openDescription]);
+  }, [openDescription, size]);
 
   //scollY 값 구하기
   const [scrollY, setScrollY] = useState(0);
