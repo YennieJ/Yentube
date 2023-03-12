@@ -13,51 +13,67 @@ const Search = () => {
   const size = useSize();
   const pcSize = size > 499;
 
+  const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState("");
   const [searchModal, setSearchModal] = useState(false);
 
-  const inputFocus = useRef(null);
+  const inputRef = useRef(null);
+  const modalInputRef = useRef(null);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
 
     if (searchValue) {
+      setPage((prev) => ++prev);
       navigate(`search/${searchValue}`);
-      inputFocus.current.blur();
+      document.body.style.removeProperty("overflow");
+      pcSize && inputRef.current.blur();
+      !pcSize && modalInputRef.current.blur();
     }
   };
 
   const handleGobackButton = () => {
-    if (!keyword) {
+    if (page === 0) {
       navigate("/");
       setSearchModal(false);
+      setSearchValue("");
       document.body.style.removeProperty("overflow");
+    } else if (page === 1) {
+      setPage(0);
+      setSearchModal(false);
+      setSearchValue("");
+      navigate("/");
+    } else if (page > 1) {
+      setPage((prev) => --prev);
+      navigate(-1, { replace: true });
     }
-    navigate(-1, { replace: true });
+  };
+
+  const handleSearchModal = () => {
+    setSearchModal(true);
+    document.body.style.overflow = "hidden";
   };
 
   useEffect(() => setSearchValue(keyword || ""), [keyword]);
 
   useEffect(() => {
-    if (!pcSize && searchModal && !keyword) {
-      document.body.style.overflow = "hidden";
-      inputFocus.current.focus();
-    } else if (!pcSize && (keyword || searchValue)) {
+    searchModal && !keyword && modalInputRef.current.focus();
+  });
+
+  useEffect(() => {
+    if (!pcSize && keyword) {
       setSearchModal(true);
       document.body.style.removeProperty("overflow");
-    } else if (pcSize && (keyword || searchValue)) {
+    } else if (
+      !pcSize &&
+      (searchValue || document.activeElement === inputRef.current)
+    ) {
+      handleSearchModal();
+    } else if (pcSize) {
       setSearchModal(false);
       document.body.style.removeProperty("overflow");
     }
-  }, [keyword, searchModal, searchValue, pcSize]);
-
-  //얘를 계속 체크해서 랜더링이 일어남.
-  useEffect(() => {
-    if (!keyword) {
-      setSearchModal(false);
-      document.body.style.removeProperty("overflow");
-    }
-  }, [keyword]);
+  }, [keyword, pcSize, searchValue]);
 
   return (
     <>
@@ -72,7 +88,7 @@ const Search = () => {
             placeholder="Search..."
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            ref={inputFocus}
+            ref={inputRef}
           />
           <button className={styles.subButton} type="submit">
             <BsSearch size={18} />
@@ -81,7 +97,7 @@ const Search = () => {
         <button
           className={`${pcSize && styles.hidden}`}
           type="button"
-          onClick={() => setSearchModal(true)}
+          onClick={handleSearchModal}
         >
           <BsSearch size={17} />
         </button>
@@ -109,7 +125,7 @@ const Search = () => {
                 placeholder="Search..."
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                ref={inputFocus}
+                ref={modalInputRef}
               />
             </form>
           </div>

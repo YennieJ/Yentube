@@ -1,16 +1,18 @@
 .listVideo {
   width: 350px;
   height: 350px;
-  margin: 0 5px;
+  margin: 0 15px;
 
   list-style-type: none;
   cursor: pointer;
+
+  transition: transform 0.1s;
 }
 
 .listVideo:hover {
   transform: scale(1.1);
-  transition-duration: 0.5s;
-  transition-delay: 1s;
+  transition-duration: 0.3s;
+  transition-delay: 0.5s;
 }
 
 .listThumbnail {
