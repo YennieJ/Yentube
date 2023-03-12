@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 
 export default function useSize() {
-  const [size, setSize] = useState(window.innerWidth > 499);
+  const [size, setSize] = useState(window.innerWidth);
   const resizeHanlder = () => {
-    const width = window.innerWidth > 499;
+    const width = window.innerWidth;
     setSize(width);
   };
   useEffect(() => {

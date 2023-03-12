@@ -10,7 +10,8 @@ const Search = () => {
   const navigate = useNavigate();
   const { keyword } = useParams();
 
-  const pcSize = useSize();
+  const size = useSize();
+  const pcSize = size > 499;
 
   const [searchValue, setSearchValue] = useState("");
   const [searchModal, setSearchModal] = useState(false);
@@ -21,7 +22,7 @@ const Search = () => {
     e.preventDefault();
 
     if (searchValue) {
-      navigate(`videos/${searchValue}`);
+      navigate(`search/${searchValue}`);
       inputFocus.current.blur();
     }
   };

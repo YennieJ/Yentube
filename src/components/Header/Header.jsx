@@ -8,26 +8,22 @@ import styles from "./Header.module.css";
 import { BsYoutube } from "react-icons/bs";
 
 const Header = () => {
-  const watchPage = useMatch("/videos/watch/:id");
+  const home = useMatch("/");
 
   const handleGohome = () => {
     window.location.replace("/");
   };
   return (
-    <>
-      <header
-        className={`${watchPage ? styles.watchContainer : styles.container}`}
-      >
-        <div className={styles.header}>
-          <button className={styles.logo} onClick={handleGohome}>
-            <BsYoutube size={30} fill="#f00" />
-            <h1 className={styles.title}>YenTube</h1>
-          </button>
-          <Search />
-          <Login />
-        </div>
-      </header>
-    </>
+    <header className={`${home ? styles.homeContainer : styles.container}`}>
+      <div className={styles.innerBox}>
+        <button className={styles.logo} onClick={handleGohome}>
+          <BsYoutube size={30} fill="#f00" />
+          <h1 className={styles.title}>YenTube</h1>
+        </button>
+        <Search />
+        <Login />
+      </div>
+    </header>
   );
 };
 export default Header;

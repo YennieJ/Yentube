@@ -34,13 +34,6 @@
   margin-right: 8px;
 }
 
-@media screen and (max-width: 320px) {
-  .listVideo,
-  .relatedVideo {
-    width: 320px;
-  }
-}
-
 @media screen and (max-width: 499px) {
   .listVideo,
   .relatedVideo {
@@ -50,7 +43,6 @@
     margin-bottom: 8px;
 
     display: block;
-    /* border: 1px solid red; */
   }
   .listThumbnail,
   .relatedThumbnail {

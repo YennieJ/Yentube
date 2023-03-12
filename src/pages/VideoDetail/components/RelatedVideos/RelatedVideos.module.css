@@ -10,7 +10,7 @@
 
   display: inline-block;
 
-  font-size: 16px;
+  font-size: 0.8rem;
   font-weight: 400;
   background-color: rgb(80, 80, 80);
 }
@@ -25,9 +25,18 @@
 @media screen and (max-width: 499px) {
   .related {
     padding: 0;
-    margin-top: 20px;
+  }
+  .titleBox {
+    width: 100%;
+    height: 50px;
+    border-top: 2px solid rgb(40, 40, 40);
+    padding: 0 5px;
+    background: #000;
+
+    display: flex;
+    align-items: center;
   }
   .title {
-    margin: 0 5px 10px;
+    margin: 0;
   }
 }

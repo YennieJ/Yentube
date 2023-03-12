@@ -21,13 +21,14 @@ const Login = () => {
 
   // sidebar 외부 클릭시 sidebar close
   const inSidebar = useRef(null);
+
   const closeSidebar = (e) => {
-    if (!inSidebar.current.contains(e.target) && isSidebar === true) {
+    if (!inSidebar.current.contains(e.target)) {
       setIsSideber(false);
     }
   };
   useEffect(() => {
-    document.addEventListener("mousedown", closeSidebar);
+    isSidebar === true && document.addEventListener("mousedown", closeSidebar);
 
     return () => {
       document.removeEventListener("mousedown", closeSidebar);
@@ -35,7 +36,8 @@ const Login = () => {
   });
 
   //mobile modal 때 스크롤막기
-  const pcSize = useSize();
+  const size = useSize();
+  const pcSize = size > 499;
   useEffect(() => {
     if (!pcSize && isSidebar) {
       document.body.style.overflow = "hidden";
@@ -55,6 +57,7 @@ const Login = () => {
         );
 
         sessionStorage.setItem("user", JSON.stringify(res.data));
+
         setIsLogin(true);
       } catch (error) {
         console.log(error);

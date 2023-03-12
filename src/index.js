@@ -1,4 +1,5 @@
 import React from "react";
+import { HelmetProvider } from "react-helmet-async";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -8,7 +9,6 @@ import VideoList from "./pages/VideoList/VidoeList";
 import VideoDetail from "./pages/VideoDetail/VideoDetail";
 
 import "./index.css";
-import { HelmetProvider } from "react-helmet-async";
 
 const router = createBrowserRouter([
   {
@@ -17,9 +17,8 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, element: <VideoList /> },
-      { path: "videos", element: <VideoList /> },
-      { path: "videos/:keyword", element: <VideoList /> },
-      { path: "videos/watch/:videoId", element: <VideoDetail /> },
+      { path: "search/:keyword", element: <VideoList /> },
+      { path: "watch/:videoId", element: <VideoDetail /> },
     ],
   },
 ]);

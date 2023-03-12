@@ -1,16 +1,16 @@
 import React, { useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 import { useParams } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { useYoutubeApi } from "context/YoutubeApiContext";
+import useIntersectionObserver from "hooks/useIntersectionObserver";
 
 import Loading from "components/Loading/Loading";
 import ErrorPage from "components/ErrorPage/ErrorPage";
 import VideoItem from "components/VideoItem/VideoItem";
-import useIntersectionObserver from "hooks/useIntersectionObserver";
 
 import styles from "./VidoeList.module.css";
-import { Helmet } from "react-helmet-async";
 
 const VideoList = () => {
   const { keyword } = useParams();
@@ -65,7 +65,6 @@ const VideoList = () => {
     onIntersect: fetchNextPage,
     enabled: hasNextPage,
   });
-
   return (
     <>
       <Helmet>

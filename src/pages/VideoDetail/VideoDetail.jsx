@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
+
+import formatAgo from "util/date";
+import useSize from "hooks/useSize";
 
 import ChannelInfo from "components/VideoItem/components/ChannelInfo/ChannelInfo";
 import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
-import formatAgo from "util/date";
 
 import styles from "./VideoDetail.module.css";
-import { Helmet } from "react-helmet-async";
 
 const VideoDetail = () => {
   const {
@@ -15,6 +17,45 @@ const VideoDetail = () => {
   const { title, description, publishedAt } = video.snippet;
 
   const [openDescription, setOpenDescription] = useState(false);
+
+  const size = useSize();
+
+  //solt position을 위한 video height
+  const vidoeRef = useRef(null);
+  const [slotPosition, setSlotPosition] = useState(
+    vidoeRef.current?.clientHeight
+  );
+  useEffect(() => {
+    setSlotPosition(vidoeRef.current.clientHeight);
+  }, [size]);
+  /////scoll height를 위한 infoHeight
+  const infoHeightRef = useRef(null);
+
+  const [infoHeight, setInfoHeight] = useState(
+    infoHeightRef.current?.clientHeight
+  );
+
+  useEffect(() => {
+    setInfoHeight(infoHeightRef.current.clientHeight);
+  }, [openDescription]);
+
+  //scollY 값 구하기
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = () => {
+    const scrollPosition = window.pageYOffset;
+    setScrollY(scrollPosition);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const slot = scrollY >= infoHeight;
 
   const handleDescription = () => {
     if (openDescription) {
@@ -26,6 +67,7 @@ const VideoDetail = () => {
       return setOpenDescription(true);
     }
   };
+
   return (
     <>
       <Helmet>
@@ -37,29 +79,19 @@ const VideoDetail = () => {
           <article className={styles.article}>
             <div className={styles.videoContainer}>
               <iframe
+                ref={vidoeRef}
                 className={styles.video}
                 title={title}
                 id="player"
                 type="text/html"
-                width="100%"
-                height="100%"
                 src={`https://www.youtube.com/embed/${video.id}`}
                 frameBorder="0"
               />
             </div>
-            <div className={styles.forFixed}>
-              <iframe
-                className={styles.video}
-                title={title}
-                id="player"
-                type="text/html"
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${video.id}`}
-                frameBorder="0"
-              />
-            </div>
-            <div className={styles.infoWrapper}>
+
+            <div className={styles.mobileVideoBg} />
+
+            <div className={styles.infoWrapper} ref={infoHeightRef}>
               <ChannelInfo video={video.snippet} type="detail" />
 
               <div
@@ -89,9 +121,16 @@ const VideoDetail = () => {
               </div>
             </div>
           </article>
-          <section className={styles.relatedVidoes}>
-            <RelatedVideos id={video.id} />
-          </section>
+          {slot && (
+            <div
+              style={{ top: `${slotPosition + 50}px` }}
+              className={styles.slot}
+            >
+              <h3 className={styles.slotItem}>추천 영상</h3>
+            </div>
+          )}
+
+          <RelatedVideos id={video.id} />
         </section>
       </div>
     </>

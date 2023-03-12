@@ -12,7 +12,7 @@ import styles from "App.module.css";
 
 function App() {
   const queryClient = new QueryClient();
-  const watchPage = useMatch("/videos/watch/:id");
+  const home = useMatch("/");
 
   return (
     <>
@@ -24,9 +24,7 @@ function App() {
 
       <YoutubeApiProvider>
         <QueryClientProvider client={queryClient}>
-          <div
-            className={`${watchPage ? styles.watchContent : styles.content}`}
-          >
+          <div className={`${home ? styles.homeContent : styles.content}`}>
             <Outlet />
           </div>
         </QueryClientProvider>
