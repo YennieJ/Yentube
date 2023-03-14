@@ -28,6 +28,7 @@ const VideoList = () => {
     error,
     fetchNextPage,
     hasNextPage,
+    isFetching,
     //무한스크롤을 구동하기위한 useInfiniteQuery
   } = useInfiniteQuery(
     ["videos", keyword],
@@ -89,7 +90,11 @@ const VideoList = () => {
           )}
         </ul>
       )}
-
+      {isFetching && (
+        <div className={styles.loaderBox}>
+          <span class={styles.loader}></span>
+        </div>
+      )}
       <div ref={loadMoreRef} />
     </>
   );
