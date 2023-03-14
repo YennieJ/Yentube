@@ -5,9 +5,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  color: white;
-  background: black;
-
   width: 100%;
   height: 100%;
   margin: 0;
@@ -277,4 +274,42 @@ input[type="search"]::-webkit-search-cancel-button,
 input[type="search"]::-webkit-search-decoration,
 progress {
   -webkit-appearance: none;
+}
+
+:root {
+  --background: #fff;
+  --text-color-primary: #0f0f0f;
+  --text-color-secondary: #606060;
+  --border: hsl(0, 0%, 53.3%, 0.2);
+
+  --content-background: rgba(0, 0, 0, 0.1);
+
+  --search-background: hsl(0, 0%, 100%);
+  --search-text-color: hsla(0, 0%, 6.7%);
+  --search-button-backgrond: #f8f8f8;
+
+  --sidebar-background: rgb(255, 255, 255);
+
+  --video-background: none;
+}
+
+[data-theme="dark"] {
+  --background: #0f0f0f;
+  --text-color-primary: #f1f1f1;
+  --text-color-secondary: #aaa;
+  --border: hsl(0, 0%, 18.82%);
+
+  --content-background: rgba(225, 225, 225, 0.2);
+
+  --search-background: hsl(0, 0%, 7%);
+  --search-text-color: hsla(0, 100%, 100%, 0.88);
+  --search-button-backgrond: hsla(0, 0%, 100%, 0.08);
+
+  --sidebar-background: rgb(45, 45, 45);
+
+  --video-background: radial-gradient(
+    farthest-side at 30% 30%,
+    rgb(90, 90, 90),
+    #0f0f0f
+  );
 }

@@ -9,29 +9,40 @@ import Header from "./components/Header/Header";
 import MFooter from "components/MFooter/MFooter";
 
 import styles from "App.module.css";
+import useLocalStorage from "react-use-localstorage";
 
 function App() {
   const queryClient = new QueryClient();
   const home = useMatch("/");
 
+  const defaultDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const [theme, setTheme] = useLocalStorage(
+    "theme",
+    defaultDark ? "dark" : "light"
+  );
+
+  const swichTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+  };
+
   return (
-    <>
+    <div data-theme={theme} className={styles.app}>
       <GoogleOAuthProvider
         clientId={`${process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}`}
       >
-        <Header />
+        <Header swichTheme={swichTheme} theme={theme} />
+        <YoutubeApiProvider>
+          <QueryClientProvider client={queryClient}>
+            <div className={`${home ? styles.homeContent : styles.content}`}>
+              <Outlet />
+            </div>
+          </QueryClientProvider>
+        </YoutubeApiProvider>
+
+        <MFooter />
       </GoogleOAuthProvider>
-
-      <YoutubeApiProvider>
-        <QueryClientProvider client={queryClient}>
-          <div className={`${home ? styles.homeContent : styles.content}`}>
-            <Outlet />
-          </div>
-        </QueryClientProvider>
-      </YoutubeApiProvider>
-
-      <MFooter />
-    </>
+    </div>
   );
 }
 

@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useSize from "hooks/useSize";
 
 import styles from "./Search.module.css";
-import { BsSearch } from "react-icons/bs";
+import { BsSearch, BsArrowLeft } from "react-icons/bs";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -116,7 +116,7 @@ const Search = () => {
               type="button"
               onClick={handleGobackButton}
             >
-              &lt;
+              <BsArrowLeft size={20} />
             </button>
             <form className={styles.form} onSubmit={handleSearchSubmit}>
               <input

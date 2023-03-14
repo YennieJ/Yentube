@@ -14,8 +14,8 @@ const MFooter = () => {
     <>
       {!watchPage && (
         <button className={styles.footer} onClick={handleGohome}>
-          <AiFillHome />
-          <span>Home</span>
+          <AiFillHome size={24} />
+          Home
         </button>
       )}
     </>

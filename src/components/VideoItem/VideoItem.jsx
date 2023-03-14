@@ -5,7 +5,7 @@ import Channelinfo from "./components/ChannelInfo/ChannelInfo";
 
 import styles from "./VideoItem.module.css";
 
-const VideoItem = ({ video, type }) => {
+const VideoItem = ({ video, type, youtube }) => {
   const navigate = useNavigate();
 
   const { title, thumbnails } = video.snippet;
@@ -17,7 +17,7 @@ const VideoItem = ({ video, type }) => {
   const isRelated = type === "related";
 
   const handleNavigate = () => {
-    navigate(`/watch/${video.id}`, { state: { video } });
+    navigate(`/watch/${video.id}`, { state: { video, youtube } });
     window.scrollTo({ top: 0 });
   };
 
@@ -32,7 +32,11 @@ const VideoItem = ({ video, type }) => {
         alt={title}
       />
 
-      <Channelinfo video={video.snippet} isRelated={isRelated} />
+      <Channelinfo
+        video={video.snippet}
+        isRelated={isRelated}
+        youtube={youtube}
+      />
     </li>
   );
 };

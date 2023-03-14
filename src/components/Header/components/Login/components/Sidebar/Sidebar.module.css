@@ -1,8 +1,8 @@
 .openSidebar {
   width: 230px;
-  background-color: rgb(30, 30, 30);
+  background-color: var(--sidebar-background);
   border-radius: 10px;
-
+  box-shadow: 0px 0px 50px -20px rgba(0, 0, 0, 0.75);
   display: table;
 
   position: absolute;

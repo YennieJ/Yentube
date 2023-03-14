@@ -8,7 +8,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: black;
+  background: var(--background);
 
   z-index: 999;
 }
@@ -22,7 +22,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background: black;
+  background: var(--background);
 
   z-index: 1;
 }
@@ -30,7 +30,7 @@
 .innerBox {
   width: 100%;
   display: flex;
-
+  align-items: center;
   padding: 0px 20px;
 }
 
@@ -38,7 +38,7 @@
   display: flex;
   align-items: center;
 
-  color: inherit;
+  color: var(--text-color-primary);
   text-decoration: none;
 
   cursor: pointer;

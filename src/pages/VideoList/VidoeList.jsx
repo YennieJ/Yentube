@@ -83,6 +83,7 @@ const VideoList = () => {
                 key={keyword ? video.id.videoId : video.id}
                 video={video}
                 type="list"
+                youtube={youtube}
               />
             ))
           )}

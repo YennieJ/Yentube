@@ -12,7 +12,7 @@ import styles from "./VideoDetail.module.css";
 
 const VideoDetail = () => {
   const {
-    state: { video },
+    state: { video, youtube },
   } = useLocation();
   const { title, description, publishedAt } = video.snippet;
 
@@ -92,7 +92,11 @@ const VideoDetail = () => {
             <div className={styles.mobileVideoBg} />
 
             <div className={styles.infoWrapper} ref={infoHeightRef}>
-              <ChannelInfo video={video.snippet} type="detail" />
+              <ChannelInfo
+                video={video.snippet}
+                type="detail"
+                youtube={youtube}
+              />
 
               <div
                 style={

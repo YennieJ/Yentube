@@ -3,11 +3,12 @@ import { useMatch } from "react-router-dom";
 
 import Search from "./components/Search/Search";
 import Login from "./components/Login/Login";
+import ThemeButton from "./components/ThemeButton/ThemeButton";
 
 import styles from "./Header.module.css";
 import { BsYoutube } from "react-icons/bs";
 
-const Header = () => {
+const Header = ({ theme, swichTheme }) => {
   const home = useMatch("/");
 
   const handleGohome = () => {
@@ -22,6 +23,7 @@ const Header = () => {
         </button>
         <Search />
         <Login />
+        <ThemeButton swichTheme={swichTheme} theme={theme} />
       </div>
     </header>
   );

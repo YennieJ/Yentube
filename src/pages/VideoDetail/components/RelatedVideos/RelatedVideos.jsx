@@ -30,7 +30,12 @@ const RelatedVideos = ({ id }) => {
           </div>
           <ul className={styles.videos}>
             {videos.map((video) => (
-              <VideoItem key={video.id} video={video} type="related" />
+              <VideoItem
+                key={video.id}
+                video={video}
+                type="related"
+                youtube={youtube}
+              />
             ))}
           </ul>
         </div>

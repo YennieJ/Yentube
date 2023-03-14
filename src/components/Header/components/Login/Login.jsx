@@ -46,6 +46,7 @@ const Login = () => {
     }
   }, [isSidebar, pcSize]);
 
+  //로그인
   const login = useGoogleLogin({
     onSuccess: async (response) => {
       try {
@@ -55,7 +56,7 @@ const Login = () => {
             headers: { Authorization: `Bearer ${response.access_token}` },
           }
         );
-
+        console.log(response);
         sessionStorage.setItem("user", JSON.stringify(res.data));
 
         setIsLogin(true);
