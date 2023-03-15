@@ -13,6 +13,7 @@ import VideoItem from "components/VideoItem/VideoItem";
 import styles from "./VidoeList.module.css";
 
 const VideoList = () => {
+  //path에 설정해논 keyword
   const { keyword } = useParams();
   const [prevData, setPrevData] = useState();
   const [nextPageToken, setNextPageToken] = useState("");
@@ -43,7 +44,6 @@ const VideoList = () => {
             ? data.items.map((item) => ({ ...item, id: item.id.videoId }))
             : data.items
           //data
-          // data.items
         );
       }),
     {
@@ -82,12 +82,7 @@ const VideoList = () => {
         <ul className={styles.videos}>
           {videos.pages.map((page) =>
             page.map((video) => (
-              <VideoItem
-                key={keyword ? video.id.videoId : video.id}
-                video={video}
-                type="list"
-                youtube={youtube}
-              />
+              <VideoItem key={video.id} video={video} type="list" />
             ))
           )}
         </ul>

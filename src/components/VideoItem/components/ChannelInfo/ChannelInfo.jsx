@@ -1,13 +1,15 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
+import { useYoutubeApi } from "context/YoutubeApiContext";
 import formatAgo from "util/date";
 
 import styles from "./ChannelInfo.module.css";
 
-const ChannelInfo = ({ type, isRelated, video, youtube }) => {
+const ChannelInfo = ({ type, isRelated, video }) => {
   const { channelId, title, channelTitle: channelName, publishedAt } = video;
 
+  const { youtube } = useYoutubeApi();
   const { data: url } = useQuery(["channel", channelId], () =>
     youtube.channelImageURL(channelId)
   );

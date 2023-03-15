@@ -34,6 +34,13 @@ const Search = () => {
     window.scrollTo({ top: 0 });
   };
 
+  //test
+  useEffect(() => {
+    if (searchModal && watchPage) {
+      setPage((prev) => ++prev);
+    }
+  }, [searchModal, watchPage]);
+
   const handleGobackButton = () => {
     if (page === 0) {
       navigate("/");
@@ -47,7 +54,7 @@ const Search = () => {
       navigate("/");
     } else if (page > 1) {
       setPage((prev) => --prev);
-      navigate(-1, { replace: true });
+      navigate(-1);
     }
     window.scrollTo({ top: 0 });
   };
@@ -64,23 +71,21 @@ const Search = () => {
   }, [keyword, watchPage]);
 
   useEffect(() => {
-    searchModal && !keyword && modalInputRef.current.focus();
+    searchModal && !searchValue && modalInputRef.current.focus();
   });
 
   useEffect(() => {
-    if (!pcSize && keyword) {
+    if (!pcSize && searchValue && (keyword || videoId)) {
       setSearchModal(true);
       document.body.style.removeProperty("overflow");
-    } else if (
-      !pcSize &&
-      (searchValue || document.activeElement === inputRef.current)
-    ) {
-      handleSearchModal();
-    } else if (pcSize) {
+    } else if (!pcSize && searchValue && !videoId) {
+      setSearchModal(true);
+      document.body.style.overflow = "hidden";
+    } else if (pcSize && searchValue) {
       setSearchModal(false);
       document.body.style.removeProperty("overflow");
     }
-  }, [keyword, pcSize, searchValue]);
+  }, [keyword, pcSize, searchValue, videoId]);
 
   return (
     <>

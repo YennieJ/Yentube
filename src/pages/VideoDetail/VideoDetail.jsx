@@ -9,14 +9,12 @@ import ChannelInfo from "components/VideoItem/components/ChannelInfo/ChannelInfo
 import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
 
 import styles from "./VideoDetail.module.css";
-import { useYoutubeApi } from "context/YoutubeApiContext";
 
 const VideoDetail = () => {
-  const { youtube } = useYoutubeApi();
-
   const {
     state: { video },
   } = useLocation();
+
   const { title, description, publishedAt } = video.snippet;
 
   const [openDescription, setOpenDescription] = useState(false);
@@ -95,11 +93,7 @@ const VideoDetail = () => {
             <div className={styles.mobileVideoBg} />
 
             <div className={styles.infoWrapper} ref={infoHeightRef}>
-              <ChannelInfo
-                video={video.snippet}
-                type="detail"
-                youtube={youtube}
-              />
+              <ChannelInfo video={video.snippet} type="detail" />
 
               <div
                 style={

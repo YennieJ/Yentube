@@ -5,7 +5,7 @@ import Channelinfo from "./components/ChannelInfo/ChannelInfo";
 
 import styles from "./VideoItem.module.css";
 
-const VideoItem = ({ video, type, youtube }) => {
+const VideoItem = ({ video, type }) => {
   const navigate = useNavigate();
 
   const { title, thumbnails } = video.snippet;
@@ -32,11 +32,7 @@ const VideoItem = ({ video, type, youtube }) => {
         alt={title}
       />
 
-      <Channelinfo
-        video={video.snippet}
-        isRelated={isRelated}
-        youtube={youtube}
-      />
+      <Channelinfo video={video.snippet} isRelated={isRelated} />
     </li>
   );
 };
