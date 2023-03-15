@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useMatch, useNavigate, useParams } from "react-router-dom";
 
 import useSize from "hooks/useSize";
 
@@ -8,7 +8,9 @@ import { BsSearch, BsArrowLeft } from "react-icons/bs";
 
 const Search = () => {
   const navigate = useNavigate();
-  const { keyword } = useParams();
+  const { keyword, videoId } = useParams();
+
+  const watchPage = useMatch("/watch/:videoId");
 
   const size = useSize();
   const pcSize = size > 499;
@@ -27,9 +29,9 @@ const Search = () => {
       setPage((prev) => ++prev);
       navigate(`search/${searchValue}`);
       document.body.style.removeProperty("overflow");
-      pcSize && inputRef.current.blur();
-      !pcSize && modalInputRef.current.blur();
+      pcSize ? inputRef.current.blur() : modalInputRef.current.blur();
     }
+    window.scrollTo({ top: 0 });
   };
 
   const handleGobackButton = () => {
@@ -47,6 +49,7 @@ const Search = () => {
       setPage((prev) => --prev);
       navigate(-1, { replace: true });
     }
+    window.scrollTo({ top: 0 });
   };
 
   const handleSearchModal = () => {
@@ -54,7 +57,11 @@ const Search = () => {
     document.body.style.overflow = "hidden";
   };
 
-  useEffect(() => setSearchValue(keyword || ""), [keyword]);
+  useEffect(() => {
+    if (!watchPage) {
+      setSearchValue(keyword || "");
+    }
+  }, [keyword, watchPage]);
 
   useEffect(() => {
     searchModal && !keyword && modalInputRef.current.focus();
@@ -107,9 +114,13 @@ const Search = () => {
       {searchModal && (
         <div
           className={`${
-            keyword ? styles.keywordContainer : styles.searchModalContainer
+            // keyword ? styles.keywordContainer : styles.searchModalContainer
+            videoId || keyword
+              ? styles.keywordContainer
+              : styles.searchModalContainer
           }`}
         >
+          {/* <div className={styles.keywordContainer}> */}
           <div className={styles.searchModalHeader}>
             <button
               className={styles.backButton}

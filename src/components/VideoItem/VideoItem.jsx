@@ -17,7 +17,7 @@ const VideoItem = ({ video, type, youtube }) => {
   const isRelated = type === "related";
 
   const handleNavigate = () => {
-    navigate(`/watch/${video.id}`, { state: { video, youtube } });
+    navigate(`/watch/${video.id}`, { state: { video } });
     window.scrollTo({ top: 0 });
   };
 

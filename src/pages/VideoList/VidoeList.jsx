@@ -14,7 +14,6 @@ import styles from "./VidoeList.module.css";
 
 const VideoList = () => {
   const { keyword } = useParams();
-
   const [prevData, setPrevData] = useState();
   const [nextPageToken, setNextPageToken] = useState("");
 
@@ -44,6 +43,7 @@ const VideoList = () => {
             ? data.items.map((item) => ({ ...item, id: item.id.videoId }))
             : data.items
           //data
+          // data.items
         );
       }),
     {

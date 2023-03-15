@@ -9,10 +9,13 @@ import ChannelInfo from "components/VideoItem/components/ChannelInfo/ChannelInfo
 import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
 
 import styles from "./VideoDetail.module.css";
+import { useYoutubeApi } from "context/YoutubeApiContext";
 
 const VideoDetail = () => {
+  const { youtube } = useYoutubeApi();
+
   const {
-    state: { video, youtube },
+    state: { video },
   } = useLocation();
   const { title, description, publishedAt } = video.snippet;
 
