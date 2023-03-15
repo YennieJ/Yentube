@@ -40,8 +40,10 @@ const VideoList = () => {
           setNextPageToken(data.nextPageToken),
           //infinityQuery를 위한 page정보
           setPrevData(data.pageInfo),
+          keyword
+            ? data.items.map((item) => ({ ...item, id: item.id.videoId }))
+            : data.items
           //data
-          data.items
         );
       }),
     {
@@ -92,7 +94,7 @@ const VideoList = () => {
       )}
       {isFetching && (
         <div className={styles.loaderBox}>
-          <span class={styles.loader}></span>
+          <span className={styles.loader}></span>
         </div>
       )}
       <div ref={loadMoreRef} />

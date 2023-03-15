@@ -1,3 +1,8 @@
+.app {
+  background: var(--background);
+  color: var(--text-color-primary);
+}
+
 .content {
   position: relative;
   top: 70px;
@@ -14,17 +19,4 @@
     position: static;
     top: 50px;
   }
-}
-
-.test {
-  width: 100px;
-  height: 100px;
-  background: var(--background);
-
-  border: 1px solid red;
-}
-
-.app {
-  background: var(--background);
-  color: var(--text-color-primary);
 }
