@@ -19,7 +19,7 @@ const VideoList = () => {
   const [nextPageToken, setNextPageToken] = useState("");
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("search_query");
-
+  console.log(keyword);
   //api 호출
   const { youtube } = useYoutubeApi();
 
@@ -77,9 +77,7 @@ const VideoList = () => {
   return (
     <>
       <Helmet>
-        <title>{`${
-          keyword === undefined ? "" : `${keyword} - `
-        }YenTube`}</title>
+        <title>{`${keyword === null ? "" : `${keyword} - `}YenTube`}</title>
       </Helmet>
       {isLoading && <Loading />}
       {error && <ErrorPage />}
