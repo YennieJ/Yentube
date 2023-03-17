@@ -29,7 +29,7 @@
   top: 0;
 }
 
-.infoWrapper {
+.infoContainer {
   width: 100%;
   padding: 24px 5px;
 }
@@ -45,7 +45,7 @@
   background-color: var(--content-background);
 }
 
-.date {
+.descriptionContainer span {
   font-size: 0.8rem;
   margin-right: 5px;
 
@@ -94,7 +94,7 @@
     padding: 0;
   }
 
-  .infoWrapper {
+  .infoContainer {
     padding: 10px 0 0;
     border-bottom: 1px dashed var(--text-color-primary);
     height: 100%;
@@ -142,7 +142,7 @@
 }
 
 @media screen and (max-width: 320px) {
-  .infoWrapper {
+  .infoContainer {
     padding-top: 10px;
   }
 }

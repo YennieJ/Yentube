@@ -4,6 +4,7 @@ import Youtube from "../api/youtube";
 // import FakeYoutube from "../api/fakeYoutubeClient";
 import YoutubeClinet from "../api/youtubeClient";
 
+//apiProvider가 만들어진 이유는 mockData가 있기 때문에!!!!!!!
 export const YoutubeApiContext = createContext();
 
 const client = new YoutubeClinet();
@@ -22,5 +23,3 @@ export function YoutubeApiProvider({ children }) {
 export function useYoutubeApi() {
   return useContext(YoutubeApiContext);
 }
-
-//apiProvider가 만들어진 이유는 mockData가 있기 때문에!!!!!!!

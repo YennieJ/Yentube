@@ -9,11 +9,14 @@ import styles from "./Header.module.css";
 import { BsYoutube } from "react-icons/bs";
 
 const Header = ({ theme, swichTheme }) => {
+  //home 화면인지 주소체크 (for css Header fixed or static)
   const home = useMatch("/");
 
+  //옌투브 로고 클릭시 새로고침.
   const handleGohome = () => {
     window.location.replace("/");
   };
+
   return (
     <header className={`${home ? styles.homeContainer : styles.container}`}>
       <div className={styles.innerBox}>

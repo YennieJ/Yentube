@@ -13,7 +13,7 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(false);
   const [isSidebar, setIsSideber] = useState(false);
 
-  // login 확인 유무.
+  //브라우저를 새로고침 했을 때 login 확인 유무.
   const user = JSON.parse(sessionStorage.getItem("user"));
   useEffect(() => {
     user !== null && setIsLogin(true);

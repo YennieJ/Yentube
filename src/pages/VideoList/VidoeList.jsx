@@ -1,9 +1,11 @@
 import React, { useState, useRef } from "react";
 import { Helmet } from "react-helmet-async";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import { useYoutubeApi } from "context/YoutubeApiContext";
+import { useRecoilValue } from "recoil";
+import { searchModalState } from "atoms";
 import useIntersectionObserver from "hooks/useIntersectionObserver";
 
 import Loading from "components/Loading/Loading";
@@ -13,10 +15,10 @@ import VideoItem from "components/VideoItem/VideoItem";
 import styles from "./VidoeList.module.css";
 
 const VideoList = () => {
-  //path에 설정해논 keyword
-  const { keyword } = useParams();
   const [prevData, setPrevData] = useState();
   const [nextPageToken, setNextPageToken] = useState("");
+  const location = useLocation();
+  const keyword = new URLSearchParams(location.search).get("search_query");
 
   //api 호출
   const { youtube } = useYoutubeApi();
@@ -68,6 +70,10 @@ const VideoList = () => {
     onIntersect: fetchNextPage,
     enabled: hasNextPage,
   });
+
+  //한번만 체크
+  const searchModal = useRecoilValue(searchModalState);
+
   return (
     <>
       <Helmet>
@@ -82,7 +88,12 @@ const VideoList = () => {
         <ul className={styles.videos}>
           {videos.pages.map((page) =>
             page.map((video) => (
-              <VideoItem key={video.id} video={video} type="list" />
+              <VideoItem
+                key={video.id}
+                video={video}
+                type="list"
+                searchModal={searchModal}
+              />
             ))
           )}
         </ul>

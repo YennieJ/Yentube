@@ -5,6 +5,7 @@ import { BsX } from "react-icons/bs";
 import { TbDoorExit } from "react-icons/tb";
 
 const Sidebar = ({ user, setIsLogin, setIsSideber }) => {
+  //로그아웃 버튼
   const signout = () => {
     setIsLogin(false);
     setIsSideber(false);

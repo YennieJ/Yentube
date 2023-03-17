@@ -6,7 +6,7 @@ import formatAgo from "util/date";
 import useSize from "hooks/useSize";
 
 import ChannelInfo from "components/VideoItem/components/ChannelInfo/ChannelInfo";
-import RelatedVideos from "./components/RelatedVideos/RelatedVideos";
+import RelatedVideoList from "./components/RelatedVideoList/RelatedVideoList";
 
 import styles from "./VideoDetail.module.css";
 
@@ -14,7 +14,6 @@ const VideoDetail = () => {
   const {
     state: { video },
   } = useLocation();
-
   const { title, description, publishedAt } = video.snippet;
 
   const [openDescription, setOpenDescription] = useState(false);
@@ -29,25 +28,22 @@ const VideoDetail = () => {
   useEffect(() => {
     setSlotPosition(vidoeRef.current.clientHeight);
   }, [size]);
-  /////scoll height를 위한 infoHeight
-  const infoHeightRef = useRef(null);
 
+  //scoll height를 위한 infoHeight
+  const infoHeightRef = useRef(null);
   const [infoHeight, setInfoHeight] = useState(
     infoHeightRef.current?.clientHeight
   );
-
   useEffect(() => {
     setInfoHeight(infoHeightRef.current.clientHeight);
   }, [openDescription, size]);
 
   //scollY 값 구하기
   const [scrollY, setScrollY] = useState(0);
-
   const handleScroll = () => {
     const scrollPosition = window.pageYOffset;
     setScrollY(scrollPosition);
   };
-
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -56,8 +52,10 @@ const VideoDetail = () => {
     };
   }, []);
 
+  //스크롤 값이 비디오 정보 높이 이상일떼
   const slot = scrollY >= infoHeight;
 
+  //open,close button for description
   const handleDescription = () => {
     if (openDescription) {
       return (
@@ -92,7 +90,7 @@ const VideoDetail = () => {
 
             <div className={styles.mobileVideoBg} />
 
-            <div className={styles.infoWrapper} ref={infoHeightRef}>
+            <div className={styles.infoContainer} ref={infoHeightRef}>
               <ChannelInfo video={video.snippet} type="detail" />
 
               <div
@@ -104,15 +102,14 @@ const VideoDetail = () => {
                 className={styles.descriptionContainer}
                 onClick={() => setOpenDescription(true)}
               >
-                <span className={styles.date}>
-                  {formatAgo(publishedAt, "ko")}
-                </span>
+                <span>{formatAgo(publishedAt, "ko")}</span>
 
                 {openDescription && (
                   <pre className={styles.description}>{description}</pre>
                 )}
                 <button
                   onClick={(e) => {
+                    //두번 클릭 막기
                     e.stopPropagation();
                     handleDescription();
                   }}
@@ -124,6 +121,7 @@ const VideoDetail = () => {
           </article>
           {slot && (
             <div
+              // 50은 header 높이 값
               style={{ top: `${slotPosition + 50}px` }}
               className={styles.slot}
             >
@@ -131,7 +129,7 @@ const VideoDetail = () => {
             </div>
           )}
 
-          <RelatedVideos id={video.id} />
+          <RelatedVideoList id={video.id} />
         </section>
       </div>
     </>

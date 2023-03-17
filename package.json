@@ -17,6 +17,7 @@
     "react-router-dom": "^6.8.1",
     "react-scripts": "5.0.1",
     "react-use-localstorage": "^3.5.3",
+    "recoil": "^0.7.7",
     "timeago.js": "^4.0.2",
     "web-vitals": "^2.1.0"
   },

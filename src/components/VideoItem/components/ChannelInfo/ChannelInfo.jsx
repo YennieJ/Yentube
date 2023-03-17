@@ -9,6 +9,7 @@ import styles from "./ChannelInfo.module.css";
 const ChannelInfo = ({ type, isRelated, video }) => {
   const { channelId, title, channelTitle: channelName, publishedAt } = video;
 
+  //뒤로갈때도 data를 받아오기 위해서
   const { youtube } = useYoutubeApi();
   const { data: url } = useQuery(["channel", channelId], () =>
     youtube.channelImageURL(channelId)
@@ -33,7 +34,7 @@ const ChannelInfo = ({ type, isRelated, video }) => {
           {url && <img className={styles.channelImg} src={url} alt="" />}
         </div>
 
-        <div className={isDetail ? styles.detailtInfo : styles.listInfo}>
+        <div className={isDetail ? styles.detailInfo : styles.listInfo}>
           {!isDetail && (
             <h2
               className={`${
@@ -43,7 +44,7 @@ const ChannelInfo = ({ type, isRelated, video }) => {
               {title}
             </h2>
           )}
-          <div className={styles.mobile}>
+          <div className={styles.flex}>
             <p
               className={
                 isDetail ? styles.channelName : styles.relatedChannelName

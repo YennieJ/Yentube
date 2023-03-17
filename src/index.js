@@ -12,13 +12,13 @@ import "./index.css";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <App />,
     errorElement: <NotFound />,
     children: [
       { index: true, element: <VideoList /> },
-      { path: "search/:keyword", element: <VideoList /> },
-      { path: "watch/:videoId", element: <VideoDetail /> },
+      { path: "results", element: <VideoList /> },
+      { path: "watch", element: <VideoDetail /> },
     ],
   },
 ]);

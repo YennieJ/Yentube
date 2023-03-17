@@ -2,14 +2,15 @@ import React from "react";
 import { Outlet, useMatch } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+import { RecoilRoot } from "recoil";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { YoutubeApiProvider } from "./context/YoutubeApiContext";
+import useLocalStorage from "react-use-localstorage";
 
 import Header from "./components/Header/Header";
 import MFooter from "components/MFooter/MFooter";
 
 import styles from "App.module.css";
-import useLocalStorage from "react-use-localstorage";
 
 function App() {
   const queryClient = new QueryClient();
@@ -28,20 +29,22 @@ function App() {
 
   return (
     <div data-theme={theme} className={styles.app}>
-      <GoogleOAuthProvider
-        clientId={`${process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}`}
-      >
-        <Header swichTheme={swichTheme} theme={theme} />
-        <YoutubeApiProvider>
-          <QueryClientProvider client={queryClient}>
-            <div className={`${home ? styles.homeContent : styles.content}`}>
-              <Outlet />
-            </div>
-          </QueryClientProvider>
-        </YoutubeApiProvider>
+      <RecoilRoot>
+        <GoogleOAuthProvider
+          clientId={`${process.env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID}`}
+        >
+          <Header swichTheme={swichTheme} theme={theme} />
+          <YoutubeApiProvider>
+            <QueryClientProvider client={queryClient}>
+              <div className={`${home ? styles.homeContent : styles.content}`}>
+                <Outlet />
+              </div>
+            </QueryClientProvider>
+          </YoutubeApiProvider>
 
-        <MFooter />
-      </GoogleOAuthProvider>
+          <MFooter />
+        </GoogleOAuthProvider>
+      </RecoilRoot>
     </div>
   );
 }

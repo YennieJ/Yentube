@@ -1,102 +1,133 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useMatch, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useMatch, useNavigate } from "react-router-dom";
 
+import { useRecoilState, useResetRecoilState } from "recoil";
+import { pageState, searchModalState } from "atoms";
 import useSize from "hooks/useSize";
 
 import styles from "./Search.module.css";
 import { BsSearch, BsArrowLeft } from "react-icons/bs";
 
+// recoil울 사용해서 page 체크
 const Search = () => {
   const navigate = useNavigate();
-  const { keyword, videoId } = useParams();
+  const location = useLocation();
+  const keyword = new URLSearchParams(location.search).get("search_query");
+  const watchPage = useMatch("watch");
+  const homePage = useMatch("");
 
-  const watchPage = useMatch("/watch/:videoId");
-
+  //pc,mobile size 체크
   const size = useSize();
   const pcSize = size > 499;
 
-  const [page, setPage] = useState(0);
   const [searchValue, setSearchValue] = useState("");
-  const [searchModal, setSearchModal] = useState(false);
 
+  //mobile: pageNumber를 체크해서 modal control
+  const [page, setPage] = useRecoilState(pageState);
+  const [searchModal, setSearchModal] = useRecoilState(searchModalState);
+  const resetPage = useResetRecoilState(pageState);
+  const closeSearchModal = useResetRecoilState(searchModalState);
+
+  //input focus를 위한 Ref
   const inputRef = useRef(null);
   const modalInputRef = useRef(null);
 
+  //submit
   const handleSearchSubmit = (e) => {
     e.preventDefault();
 
     if (searchValue) {
       setPage((prev) => ++prev);
-      navigate(`search/${searchValue}`);
+      navigate({
+        pathname: "/results",
+        search: `?search_query=${searchValue}`,
+      });
       document.body.style.removeProperty("overflow");
       pcSize ? inputRef.current.blur() : modalInputRef.current.blur();
     }
     window.scrollTo({ top: 0 });
   };
 
-  //test
-  useEffect(() => {
-    if (searchModal && watchPage) {
-      setPage((prev) => ++prev);
-    }
-  }, [searchModal, watchPage]);
-
+  //mobile: prev page button
   const handleGobackButton = () => {
     if (page === 0) {
-      navigate("/");
-      setSearchModal(false);
       setSearchValue("");
+      closeSearchModal();
       document.body.style.removeProperty("overflow");
     } else if (page === 1) {
-      setPage(0);
-      setSearchModal(false);
       setSearchValue("");
-      navigate("/");
+      resetPage();
+      closeSearchModal();
+      navigate("/", { replace: true });
+      document.body.style.removeProperty("overflow");
     } else if (page > 1) {
       setPage((prev) => --prev);
       navigate(-1);
     }
+
     window.scrollTo({ top: 0 });
   };
 
-  const handleSearchModal = () => {
+  //mobile: search modal scroll controller
+  const openSearchMoal = () => {
     setSearchModal(true);
-    document.body.style.overflow = "hidden";
+    page === 0
+      ? (document.body.style.overflow = "hidden")
+      : document.body.style.removeProperty("overflow");
   };
 
+  //뒤로가기할때 검색어 변하게
   useEffect(() => {
     if (!watchPage) {
       setSearchValue(keyword || "");
     }
   }, [keyword, watchPage]);
 
+  //처음 모달창을 열때 focus
   useEffect(() => {
     searchModal && !searchValue && modalInputRef.current.focus();
   });
 
+  //pc와 mobile 화면 이동시 searchModal controller
   useEffect(() => {
-    if (!pcSize && searchValue && (keyword || videoId)) {
+    //pc > mobile 검색어 &&
+    if (!pcSize && keyword) {
       setSearchModal(true);
       document.body.style.removeProperty("overflow");
-    } else if (!pcSize && searchValue && !videoId) {
+    } //pc > mobile 검색중 &&
+    else if (!pcSize && searchValue && homePage) {
       setSearchModal(true);
       document.body.style.overflow = "hidden";
-    } else if (pcSize && searchValue) {
-      setSearchModal(false);
+    } // mobile > pc 검색어 &&
+    else if (searchModal && pcSize) {
+      closeSearchModal();
+      document.body.style.removeProperty("overflow");
+    } // mobile : watchPage && 검색어 &&
+    else if (!pcSize && watchPage && searchValue) {
+      setSearchModal(true);
       document.body.style.removeProperty("overflow");
     }
-  }, [keyword, pcSize, searchValue, videoId]);
+  }, [
+    closeSearchModal,
+    homePage,
+    keyword,
+    pcSize,
+    searchModal,
+    searchValue,
+    setSearchModal,
+    watchPage,
+  ]);
 
   return (
     <>
       <div className={styles.searchbarContainer}>
         <form
-          onSubmit={handleSearchSubmit}
           className={`${pcSize ? styles.form : styles.hidden}`}
+          onSubmit={handleSearchSubmit}
         >
           <input
-            type="search"
             className={styles.barInput}
+            type="search"
             placeholder="Search..."
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
@@ -106,27 +137,21 @@ const Search = () => {
             <BsSearch size={18} />
           </button>
         </form>
-        <button
-          className={`${pcSize && styles.hidden}`}
-          type="button"
-          onClick={handleSearchModal}
-        >
-          <BsSearch size={17} />
-        </button>
+        {!pcSize && (
+          <button type="button" onClick={openSearchMoal}>
+            <BsSearch size={17} />
+          </button>
+        )}
       </div>
 
       {/* mobile화면 일때 */}
       {searchModal && (
         <div
           className={`${
-            // keyword ? styles.keywordContainer : styles.searchModalContainer
-            videoId || keyword
-              ? styles.keywordContainer
-              : styles.searchModalContainer
+            page === 0 ? styles.searchModalContainer : styles.keywordContainer
           }`}
         >
-          {/* <div className={styles.keywordContainer}> */}
-          <div className={styles.searchModalHeader}>
+          <div className={styles.searchModalcontent}>
             <button
               className={styles.backButton}
               type="button"

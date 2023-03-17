@@ -2,14 +2,16 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
 import { useYoutubeApi } from "context/YoutubeApiContext";
+import { useRecoilValue } from "recoil";
+import { searchModalState } from "atoms";
 
 import Loading from "components/Loading/Loading";
 import ErrorPage from "components/ErrorPage/ErrorPage";
 import VideoItem from "components/VideoItem/VideoItem";
 
-import styles from "./RelatedVideos.module.css";
+import styles from "./RelatedVideoList.module.css";
 
-const RelatedVideos = ({ id }) => {
+const RelatedVideosList = ({ id }) => {
   const { youtube } = useYoutubeApi();
   const {
     data: videos,
@@ -18,6 +20,9 @@ const RelatedVideos = ({ id }) => {
   } = useQuery(["related", id], () => youtube.relatedVideo(id), {
     staleTime: 1000 * 60 * 5,
   });
+
+  //이곳에서 한번만 체크하게?..
+  const searchModal = useRecoilValue(searchModalState);
 
   return (
     <>
@@ -34,7 +39,7 @@ const RelatedVideos = ({ id }) => {
                 key={video.id}
                 video={video}
                 type="related"
-                youtube={youtube}
+                searchModal={searchModal}
               />
             ))}
           </ul>
@@ -44,4 +49,4 @@ const RelatedVideos = ({ id }) => {
   );
 };
 
-export default RelatedVideos;
+export default RelatedVideosList;
