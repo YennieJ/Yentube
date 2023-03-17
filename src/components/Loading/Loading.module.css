@@ -34,12 +34,14 @@
 .relatedContainer {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .relatedList {
   padding: 10px 0;
 
   display: flex;
+  width: 100%;
 }
 
 .relatedImg {
@@ -66,7 +68,7 @@
 }
 @media screen and (min-width: 1000px) {
   .relatedContainer {
-    width: 550px;
+    min-width: 550px;
   }
 }
 @media screen and (max-width: 499px) {
