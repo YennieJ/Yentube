@@ -1,16 +1,16 @@
 import { useContext, createContext } from "react";
 
 import Youtube from "../api/youtube";
-import FakeYoutube from "../api/fakeYoutubeClient";
+// import FakeYoutube from "../api/fakeYoutubeClient";
 import YoutubeClinet from "../api/youtubeClient";
 
 //apiProvider가 만들어진 이유는 mockData가 있기 때문에!!!!!!!
 export const YoutubeApiContext = createContext();
 
 const client = new YoutubeClinet();
-const fake = new FakeYoutube();
+// const fake = new FakeYoutube();
 
-const youtube = new Youtube(fake);
+const youtube = new Youtube(client);
 
 export function YoutubeApiProvider({ children }) {
   return (
