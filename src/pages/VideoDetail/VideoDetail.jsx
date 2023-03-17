@@ -128,7 +128,7 @@ const VideoDetail = () => {
               <h3 className={styles.slotItem}>추천 영상</h3>
             </div>
           )}
-          <div>
+          <div className={styles.relatedVideoContainer}>
             <RelatedVideoList id={video.id} />
           </div>
         </section>

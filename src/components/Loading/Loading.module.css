@@ -68,7 +68,7 @@
 }
 @media screen and (min-width: 1000px) {
   .relatedContainer {
-    min-width: 550px;
+    width: 500px;
   }
 }
 @media screen and (max-width: 499px) {
