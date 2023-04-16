@@ -1,4 +1,4 @@
-# Yentube
+# <a href="https://yentube.store/s" target="_blank" rel="noreferrer"> 👉🏻 Yentube </a>
 
 > 개선 점 : google-login-scope을 사용해서 유저 정보 가져오기
 
