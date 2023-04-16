@@ -1,9 +1,9 @@
 import React from "react";
 import { useMatch } from "react-router-dom";
 
-import Search from "./components/Search/Search";
-import Login from "./components/Login/Login";
-import ThemeButton from "./components/ThemeButton/ThemeButton";
+import Search from "./Components/Search/Search";
+import Login from "./Components/Login/Login";
+import ThemeButton from "./Components/ThemeButton/ThemeButton";
 
 import styles from "./Header.module.css";
 import { BsYoutube } from "react-icons/bs";

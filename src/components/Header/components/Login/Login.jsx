@@ -4,7 +4,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
 import Sidebar from "./components/Sidebar/Sidebar";
-import useSize from "hooks/useSize";
+import useSize from "Hooks/useSize";
 
 import styles from "./Login.module.css";
 import { BsPersonCircle } from "react-icons/bs";

@@ -3,14 +3,14 @@ import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-import { useYoutubeApi } from "context/YoutubeApiContext";
+import { useYoutubeApi } from "Context/YoutubeApiContext";
 import { useRecoilValue } from "recoil";
 import { searchModalState } from "atoms";
-import useIntersectionObserver from "hooks/useIntersectionObserver";
+import useIntersectionObserver from "Hooks/useIntersectionObserver";
 
-import Loading from "components/Loading/Loading";
-import ErrorPage from "components/ErrorPage/ErrorPage";
-import VideoItem from "components/VideoItem/VideoItem";
+import Loading from "Components/Loading/Loading";
+import ErrorPage from "Components/ErrorPage/ErrorPage";
+import VideoItem from "Components/VideoItem/VideoItem";
 
 import styles from "./VidoeList.module.css";
 

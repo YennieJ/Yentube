@@ -3,7 +3,7 @@ import { useLocation, useMatch, useNavigate } from "react-router-dom";
 
 import { useRecoilState, useResetRecoilState } from "recoil";
 import { pageState, searchModalState } from "atoms";
-import useSize from "hooks/useSize";
+import useSize from "Hooks/useSize";
 
 import styles from "./Search.module.css";
 import { BsSearch, BsArrowLeft } from "react-icons/bs";
@@ -13,6 +13,7 @@ const Search = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const keyword = new URLSearchParams(location.search).get("search_query");
+
   const watchPage = useMatch("watch");
   const homePage = useMatch("");
 

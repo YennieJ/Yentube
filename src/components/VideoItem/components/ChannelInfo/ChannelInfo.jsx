@@ -1,8 +1,8 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { useYoutubeApi } from "context/YoutubeApiContext";
-import formatAgo from "util/date";
+import { useYoutubeApi } from "Context/YoutubeApiContext";
+import formatAgo from "Util/date";
 
 import styles from "./ChannelInfo.module.css";
 

@@ -10,14 +10,14 @@ export default class Youtube {
       : this.#mostPopular(pageToken);
   }
 
-  //채널사진
+  //채널 사진
   async channelImageURL(id) {
     return this.apiClient
       .channels({ params: { part: "snippet", id } })
       .then((res) => res.data.items[0].snippet.thumbnails.default.url);
   }
 
-  //관련된 비디오
+  //검색 내용과 관련된 비디오
   async relatedVideo(id) {
     return this.apiClient
       .search({
@@ -36,8 +36,8 @@ export default class Youtube {
       );
   }
 
-  //videoList data
   //다른 점은 keyword가 있냐 없냐
+  //search data
   async #searchByKeyword(pageToken, keyword) {
     return this.apiClient
       .search({
@@ -55,6 +55,7 @@ export default class Youtube {
       .then((res) => res.data);
   }
 
+  //videoList data
   async #mostPopular(pageToken) {
     return this.apiClient
       .videos({

@@ -4,11 +4,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { RecoilRoot } from "recoil";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { YoutubeApiProvider } from "./context/YoutubeApiContext";
+import { YoutubeApiProvider } from "./Context/YoutubeApiContext";
 import useLocalStorage from "react-use-localstorage";
 
-import Header from "./components/Header/Header";
-import MFooter from "components/MFooter/MFooter";
+import Header from "./Components/Header/Header";
+import MFooter from "Components/MFooter/MFooter";
 
 import styles from "App.module.css";
 

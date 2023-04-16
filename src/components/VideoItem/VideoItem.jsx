@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useSetRecoilState } from "recoil";
 import { pageState } from "atoms";
 
-import Channelinfo from "./components/ChannelInfo/ChannelInfo";
+import Channelinfo from "./Components/ChannelInfo/ChannelInfo";
 
 import styles from "./VideoItem.module.css";
 

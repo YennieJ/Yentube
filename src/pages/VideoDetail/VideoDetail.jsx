@@ -2,11 +2,11 @@ import React, { useRef, useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 
-import formatAgo from "util/date";
-import useSize from "hooks/useSize";
+import formatAgo from "Util/date";
+import useSize from "Hooks/useSize";
 
-import ChannelInfo from "components/VideoItem/components/ChannelInfo/ChannelInfo";
-import RelatedVideoList from "./components/RelatedVideoList/RelatedVideoList";
+import ChannelInfo from "Components/VideoItem/Components/ChannelInfo/ChannelInfo";
+import RelatedVideoList from "./Components/RelatedVideoList/RelatedVideoList";
 
 import styles from "./VideoDetail.module.css";
 
@@ -34,6 +34,7 @@ const VideoDetail = () => {
   const [infoHeight, setInfoHeight] = useState(
     infoHeightRef.current?.clientHeight
   );
+
   useEffect(() => {
     setInfoHeight(infoHeightRef.current.clientHeight);
   }, [openDescription, size]);
