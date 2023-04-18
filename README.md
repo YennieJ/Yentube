@@ -10,7 +10,7 @@ https://user-images.githubusercontent.com/108519185/232318444-bf6e9c19-26fb-4de2
 
 ![react](https://img.shields.io/badge/-React-000000?logo=react&logoColor=61DAFB&style=for-the-badge)
 ![cssmodules](https://img.shields.io/badge/-cssmodules-000000?logo=cssmodules&logoColor=white&style=for-the-badge)
-![jsvascript](https://img.shields.io/badge/-javascript-000000?logo=javascript&logoColor=F7DF1E&style=for-the-badge)
+![javascript](https://img.shields.io/badge/-javascript-000000?logo=javascript&logoColor=F7DF1E&style=for-the-badge)
 
 ![axios](https://img.shields.io/badge/-axios-000000?logo=axios&logoColor=white&style=for-the-badge)
 ![reactquery](https://img.shields.io/badge/-reactquery-000000?logo=reactquery&logoColor=FF4154&style=for-the-badge)
